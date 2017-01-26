@@ -1,2 +1,18 @@
-# vue-frontend
-This test project of vue.js as fronend
+# 1000i1.ru
+
+> A Vue.js 1000i1.ru portal  project
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+```
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
