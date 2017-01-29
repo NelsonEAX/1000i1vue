@@ -6,6 +6,7 @@
                     <div class="form-group">
                         <input
                                 v-model="email"
+                                name="email"
                                 class="form-control"
                                 type="email"
                                 placeholder="Email">
@@ -14,12 +15,13 @@
                     <div class="form-group">
                         <input
                                 v-model="password"
+                                name="password"
                                 class="form-control"
                                 type="password"
                                 placeholder="Password">
                     </div>
 
-                    <button @click="test" class="btn btn-success pull-right">
+                    <button @click="login" class="btn btn-success pull-right">
                         Login
                     </button>
                 </div>
@@ -40,11 +42,21 @@
             }
         },
         methods: {
-            test(){
-                this.$http.get("http://1000i1api/api/test")
-                        .then(function (response) {
-                            console.log(response)
-                        })
+            login(){
+                var data = {
+                    client_id: 2,
+                    client_secret: 'AqWG9zEmcGnswNT5vQUCY8lakVi5fezbJBjMpLDH',
+                    grant_type: 'password',
+                    username: this.email,
+                    password: this.password
+                }
+                this.$http.post("oauth/token", data)
+                    .then(response => {
+                        console.log(response);
+                        this.$auth.setToken(response.body.access_token, response.body.expires_in*1000 + Date.now())
+
+                        this.$router.push("/feed")
+                    })
             }
         }
     }

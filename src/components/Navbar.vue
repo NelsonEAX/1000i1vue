@@ -3,9 +3,18 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">About</a></li>
-                <li role="presentation"><a href="#">Contact</a></li>
+                <router-link tag="li" to="/login" v-if="!isAuth">
+                    <a>Войти</a>
+                </router-link>
+                <router-link tag="li" to="/register" v-if="!isAuth">
+                    <a>Регитсрация</a>
+                </router-link>
+                <router-link tag="li" to="/feed" v-if="isAuth">
+                    <a>Feed</a>
+                </router-link>
+                <router-link tag="li" to="/logout" v-if="isAuth">
+                    <a>Выйти</a>
+                </router-link>
             </ul>
         </nav>
         <h3 class="text-muted">Project name</h3>
@@ -14,7 +23,17 @@
 </template>
 
 <script>
+    export default {
+        data () {
+            return {
+                isAuth: null
+            }
+        },
 
+        created () {
+            this.isAuth = this.$auth.isAuthenticated()
+        }
+    }
 </script>
 
 <style>
