@@ -7,7 +7,7 @@
                         <input
                                 v-model="name"
                                 class="form-control"
-                                type="text"
+                                type="hidden"
                                 placeholder="Name">
                     </div>
 
@@ -27,7 +27,7 @@
                                 placeholder="Password">
                     </div>
 
-                    <button class="btn btn-success pull-right">
+                    <button @click="register" class="btn btn-success pull-right">
                         Register
                     </button>
                 </div>
@@ -46,6 +46,22 @@
                 name:'',
                 email:'',
                 password:''
+            }
+        },
+        methods: {
+            register(){
+                var data = {
+                    email: 'qweio2@qwe.ru',
+                    password: 'qweqweqwe1',
+                    password_confirmation: 'qweqweqwe1'
+                }
+                this.$http.post("api/register", data)
+                        .then(response => {
+                    console.log(response);
+//                this.$auth.setToken(response.body.access_token, response.body.expires_in*1000 + Date.now())
+//
+//                this.$router.push("/feed")
+                })
             }
         }
     }
