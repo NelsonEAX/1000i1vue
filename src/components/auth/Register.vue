@@ -27,7 +27,7 @@
                                 placeholder="Password">
                     </div>
 
-                    <button class="btn btn-success pull-right">
+                    <button @click="register" class="btn btn-success pull-right">
                         Register
                     </button>
                 </div>
@@ -46,6 +46,43 @@
                 name:'',
                 email:'',
                 password:''
+            }
+        },
+        methods: {
+            register(){
+                var data = {
+                    client_id: 2,
+                    client_secret: 'AqWG9zEmcGnswNT5vQUCY8lakVi5fezbJBjMpLDH',
+                    grant_type: 'password'
+                }
+                this.$http.get("oauth/clients", data)
+                    .then(token => {
+                        console.log(token);
+                      /*  var data = {
+                            //   client_id: 2,
+                            //   client_secret: 'AqWG9zEmcGnswNT5vQUCY8lakVi5fezbJBjMpLDH',
+                            //   grant_type: 'password',
+                            _token: token.body.csrf,
+                            name: this.name,
+                            email: this.email,
+                            password: this.password,
+                            password_confirmation: this.password
+                        };
+                        this.$http.headers.common['X-CSRF-TOKEN'] = token.body.csrf;
+                //this.$cookie.set('test', 'Hello world!', 1);
+                        this.$http.post("register", data, {
+                            headers: {
+                                'X-CSRF-TOKEN': token.body.csrf // from js or meta
+                            }
+                        })
+                            .then(response => {
+                                console.log(response);
+                                //this.$auth.setToken(response.body.access_token, response.body.expires_in*1000 + Date.now())
+
+                                //this.$router.push("/feed")
+                            })*/
+                    })
+
             }
         }
     }

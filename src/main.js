@@ -2,10 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import Router from './routes.js'
 
+//import VueCookie from 'vue-cookie'
+
 import VueResource from 'vue-resource'
 import Auth from './packages/auth/Auth.js'
 
 Vue.use(VueResource)
+//Vue.use(VueCookie)
 Vue.use(Auth)
 
 Vue.http.options.root = 'http://1000i1api'
