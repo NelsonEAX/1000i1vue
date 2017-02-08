@@ -23,11 +23,13 @@ const router = new VueRouter({
             component: Registr,
             meta: {
                 forGuest: true
-            },
-            children: [
-            {
-                path: '/confirm/:token',
-                component: Confirm
+            }
+        },
+        {
+            path: '/confirm/:token',
+            component: Confirm,
+            meta: {
+                forGuest: true
             }
         },
         {

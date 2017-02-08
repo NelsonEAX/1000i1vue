@@ -5,14 +5,6 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <input
-                                v-model="name"
-                                class="form-control"
-                                type="hidden"
-                                placeholder="Name">
-                    </div>
-
-                    <div class="form-group">
-                        <input
                                 v-model="email"
                                 class="form-control"
                                 type="email"
@@ -51,7 +43,7 @@
         methods: {
             register(){
                 var data = {
-                    email: 'qweio2@qwe.ru',
+                    email: 'qweio42@qwe.ru',
                     password: 'qweqweqwe1',
                     password_confirmation: 'qweqweqwe1'
                 }
