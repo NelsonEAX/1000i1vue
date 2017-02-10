@@ -10,38 +10,19 @@ Vue.use(VueRouter)
 
 
 const router = new VueRouter({
-    routes: [
-        {
-            path: "/login",
-            component: Login,
-            meta: {
-                forGuest: true
-            }
-        },
-        {
-            path: "/register",
-            component: Registr,
-            meta: {
-                forGuest: true
-            }
-        },
-        {
-            path: '/confirm/:token',
-            component: Confirm,
-            meta: {
-                forGuest: true
-            }
-        },
-        {
-            path: "/feed",
-            component: Feed,
-            meta: {
-                forAuth: true
-            }
-        }
-    ],
-    linkActiveClass: 'active',
-    mode: 'history'
+   linkActiveClass: 'active',
+   mode: 'history',
+   routes: [
+      /** AUTH **/
+      {path: "/login",              component: Login, meta: {forGuest: true}},
+      {path: "/register",           component: Registr, meta: {forGuest: true}},
+      {path: '/confirm/:token',     component: Confirm, meta: {forGuest: true}},
+
+      /** DASHBOARD **/
+
+      /** DEV **/
+      {path: "/feed",               component: Feed,meta: {forAuth: true}}
+    ]
 })
 
 export default router
