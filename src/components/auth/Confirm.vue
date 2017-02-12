@@ -4,7 +4,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div v-if="loading" class="loading">
-                        Loading...
+                        <i class="fa fa-refresh fa-spin fa-lg fa-fw"></i> Loading...
                     </div>
 
                     <div v-if="error" class="error">
@@ -38,16 +38,33 @@
         },
         created () {
            // запрашиваем данные когда реактивное представление уже создано
-           this.fetchData()
+           this.confirmEmail()
         },
         watch: {
             // в случае изменения маршрута запрашиваем данные вновь
             '$route': 'fetchData'
         },
         methods: {
-            fetchData () {
+            confirmEmail () {
                 this.error = this.post = null
                 this.loading = true
+                console.log(this.$route.params.token);
+                this.$http.get("api/register/confirm/"+this.$route.params.token)
+                .then(response => {
+                    console.log("success", response);
+                    if(response.body.state){
+                        this.$router.push("/login");
+                    }else{
+                        this.error = response.body.error;
+                    }
+
+                },response => {
+                    console.log("error", response);
+                    this.error = 'Возникли проблемы, пойди выпей кофейку и попробуй еще раз'
+                })
+
+                //this.$router.push("/feed")
+            },
                /* // замените здесь getPost используемым методом получения данных / доступа к API
                 getPost(this.$route.params.id, (err, post) => {
                     this.loading = false
@@ -57,7 +74,7 @@
                        this.post = post
                     }
                 })*/
-            },
+
             login(){
                 var data = {
                     client_id: 2,

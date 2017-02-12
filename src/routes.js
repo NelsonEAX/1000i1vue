@@ -10,18 +10,21 @@ Vue.use(VueRouter)
 
 
 const router = new VueRouter({
-   linkActiveClass: 'active',
-   mode: 'history',
-   routes: [
-      /** AUTH **/
-      {path: "/login",              component: Login, meta: {forGuest: true}},
-      {path: "/register",           component: Registr, meta: {forGuest: true}},
-      {path: '/confirm/:token',     component: Confirm, meta: {forGuest: true}},
+    linkActiveClass: 'active',
+    mode: 'history',
+    routes: [
+        /** AUTH **/
+        {path: "/login",              component: Login, meta: {forGuest: true}},
+        {path: "/register",           component: Registr, meta: {forGuest: true}},
+        {path: '/confirm/:token',     component: Confirm, meta: {forGuest: true}},
 
-      /** DASHBOARD **/
+        /** DASHBOARD **/
 
-      /** DEV **/
-      {path: "/feed",               component: Feed,meta: {forAuth: true}}
+
+
+
+        /** DEV **/
+        {path: "/feed",               component: Feed,meta: {forAuth: true}}
     ]
 })
 

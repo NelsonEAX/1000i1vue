@@ -8,7 +8,7 @@ import Auth from './packages/auth/Auth.js'
 Vue.use(VueResource)
 Vue.use(Auth)
 
-Vue.http.options.root = 'http://1000i1api:88'
+Vue.http.options.root = 'http://1000i1api'
 Vue.http.headers.common['Content-Type'] = 'application/json'
 Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
 

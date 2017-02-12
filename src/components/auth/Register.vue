@@ -20,7 +20,7 @@
                     </div>
 
                     <button @click="register" class="btn btn-success pull-right">
-                        Register
+                        <i v-if="loading" class="fa fa-refresh fa-spin fa-lg fa-fw"></i> Register
                     </button>
                 </div>
             </div>
@@ -37,19 +37,40 @@
             return{
                 name:'',
                 email:'',
-                password:''
+                password:'',
+                loading: false
             }
         },
         methods: {
+            makeemail()
+            {
+                var text = "";
+                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                for( var i=0; i < 5; i++ )
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                return text;
+            },
             register(){
+
+                this.loading = true;
                 var data = {
-                    email: 'qweio42@qwe.ru',
+                    email: this.email,
+                    password: this.password,
+                    password_confirmation: this.password
+                }
+
+                data = {
+                    email: this.makeemail()+'@email.ru',
                     password: 'qweqweqwe1',
                     password_confirmation: 'qweqweqwe1'
                 }
+
                 this.$http.post("api/register", data)
                         .then(response => {
                     console.log(response);
+                    this.loading = false;
 //                this.$auth.setToken(response.body.access_token, response.body.expires_in*1000 + Date.now())
 //
 //                this.$router.push("/feed")
