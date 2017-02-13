@@ -2,7 +2,7 @@
     <div class="login-page">
         <div class="login-box">
             <div class="login-logo">
-                <router-link tag="a" to="/" v-if="!isAuth">
+                <router-link tag="a" to="/" v-if="!isDash">
                     <b>IOOOiI</b>.ru</a>
                 </router-link>
             </div>
@@ -29,8 +29,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-7">
-                            <router-link tag="a" to="/register" v-if="!isAuth">Восстановить пароль</router-link>
-                            <router-link tag="a" to="/register" v-if="!isAuth">Регитсрация</router-link>
+                            <router-link tag="a" to="/register" v-if="!isDash">Восстановить пароль</router-link>
+                            <router-link tag="a" to="/register" v-if="!isDash">Регитсрация</router-link>
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-5 pull-right">
