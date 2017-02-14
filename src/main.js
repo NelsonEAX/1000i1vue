@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import App from './App.vue'
-import { store } from './store.js';
+import App from './components/App.vue'
+import { store } from './packages/store/store.js';
 import { router } from './routes.js';
 
 import VueResource from 'vue-resource'
@@ -14,7 +14,7 @@ Vue.http.headers.common['Content-Type'] = 'application/json'
 Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
 
 
-router.beforeEach(
+/*router.beforeEach(
     (to, from, next) => {
         if(to.matched.some(record => record.meta.isDash)){
             if(Vue.auth.isAuthenticated()){
@@ -30,7 +30,7 @@ router.beforeEach(
             } else next()
         } else next()
     }
-);
+);*/
 
 new Vue({
     el: '#app',

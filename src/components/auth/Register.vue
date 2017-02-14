@@ -1,14 +1,14 @@
 <template>
-    <div class="login-page">
-        <div class="login-box">
-            <div class="login-logo">
+    <div class="register-page">
+        <div class="register-box">
+            <div class="register-logo">
                 <router-link tag="a" to="/" v-if="!isAuth">
                     <b>IOOOiI</b>.ru</a>
                 </router-link>
             </div>
-            <!-- /.login-logo -->
-            <div class="login-box-body">
-                <p class="login-box-msg">Регистрация нового пользователя</p>
+            <!-- /.register-logo -->
+            <div class="register-box-body">
+                <p class="register-box-msg">Регистрация нового пользователя</p>
                 <div class="form-group has-feedback">
                     <input
                             v-model="email"
@@ -50,39 +50,9 @@
                     <!-- /.col -->
                 </div>
             </div>
-            <!-- /.login-box-body -->
+            <!-- /.register-box-body -->
         </div>
     </div>
-    <!--<div class="row">-->
-        <!--<div class="col-md-6 col-md-offset-3">-->
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-                    <!--<div class="form-group">-->
-                        <!--<input-->
-                                <!--v-model="email"-->
-                                <!--class="form-control"-->
-                                <!--type="email"-->
-                                <!--placeholder="Email">-->
-                    <!--</div>-->
-
-                    <!--<div class="form-group">-->
-                        <!--<input-->
-                                <!--v-model="password"-->
-                                <!--class="form-control"-->
-                                <!--type="password"-->
-                                <!--placeholder="Password">-->
-                    <!--</div>-->
-
-                    <!--<button @click="register" class="btn btn-success pull-right">-->
-                        <!--<i v-if="loading" class="fa fa-refresh fa-spin fa-lg fa-fw"></i> Register-->
-                    <!--</button>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;<pre>&ndash;&gt;-->
-            <!--&lt;!&ndash;{{ $data }}&ndash;&gt;-->
-            <!--&lt;!&ndash;</pre>&ndash;&gt;-->
-        <!--</div>-->
-    <!--</div>-->
 </template>
 
 <script>
@@ -133,7 +103,3 @@
         }
     }
 </script>
-
-<style>
-
-</style>

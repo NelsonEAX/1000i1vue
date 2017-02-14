@@ -74,18 +74,7 @@
 </script>
 
 <style>
-    html,
-    body {
-        height: 100%;
-    }
-    .layout-boxed html,
-    .layout-boxed body {
-        height: 100%;
-    }
-    body {
-        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        overflow-x: hidden;
-        overflow-y: auto;
+    .login-page {
+        padding: 1px;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="app">
+  <div id="app">
     <!--<navbar></navbar>-->
     <!--<transition>-->
     <router-view></router-view>
@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
-import Login from './components/auth/Login.vue'
-import Register from './components/auth/Register.vue'
-import Confirm from './components/auth/Confirm.vue'
+import Navbar from './Navbar.vue'
+import Login from './auth/Login.vue'
+import Register from './auth/Register.vue'
+import Confirm from './auth/Confirm.vue'
 
 export default {
   components: {
@@ -23,6 +23,4 @@ export default {
 }
 </script>
 
-<style>
 
-</style>
