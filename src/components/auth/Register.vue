@@ -2,8 +2,8 @@
     <div class="register-page">
         <div class="register-box">
             <div class="register-logo">
-                <router-link tag="a" to="/" v-if="!isAuth">
-                    <b>IOOOiI</b>.ru</a>
+                <router-link tag="a" class="logo-text" to="/" v-if="!isAuth">
+                    <b>1000i1</b>.ru
                 </router-link>
             </div>
             <!-- /.register-logo -->
@@ -103,3 +103,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .logo-text{
+        font-family: 'Special Elite', cursive;
+    }
+</style>

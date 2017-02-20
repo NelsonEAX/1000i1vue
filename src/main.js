@@ -9,9 +9,9 @@ import Auth from './packages/auth/Auth.js'
 Vue.use(VueResource)
 Vue.use(Auth)
 
-Vue.http.options.root = 'http://1000i1api'
-Vue.http.headers.common['Content-Type'] = 'application/json'
-Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
+Vue.http.options.root = store.getters.getRoot;
+Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
+Vue.http.headers.common['Authorization'] = store.getters.getHeaderAuthorization;
 
 
 /*router.beforeEach(

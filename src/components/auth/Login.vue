@@ -2,8 +2,8 @@
     <div class="login-page">
         <div class="login-box">
             <div class="login-logo">
-                <router-link tag="a" to="/" v-if="!isDash">
-                    <b>IOOOiI</b>.ru</a>
+                <router-link tag="a" class="logo-text" to="/" v-if="!isDash">
+                    <b>1000i1</b>.ru
                 </router-link>
             </div>
             <!-- /.login-logo -->
@@ -55,9 +55,9 @@
         methods: {
             login(){
                 var data = {
-                    client_id: 2,
-                    client_secret: 'zUxRqZVzGz4erCWkj6PObTTw5ugmHMhRdtvKWSiC',
-                    grant_type: 'password',
+                    client_id: this.$store.getters.getAuthClientId,
+                    client_secret: this.$store.getters.getAuthClientSecret,
+                    grant_type: this.$store.getters.getAuthGrantType,
                     username: this.email,
                     password: this.password
                 }
@@ -73,8 +73,11 @@
     }
 </script>
 
-<style>
+<style scoped>
     .login-page {
         padding: 1px;
+    }
+    .logo-text{
+        font-family: 'Special Elite', cursive;
     }
 </style>
