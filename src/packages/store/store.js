@@ -14,7 +14,7 @@ export const store = new Vuex.Store({
     state: {
         app: {
             server: {
-                root: 'api.1000i1.ru',
+                root: 'http://1000i1api:88',//'http://api.1000i1.ru',
                 headers:{
                     content_type: 'application/json',
                     authorization: 'Bearer ' + 'Vue.auth.getToken()',

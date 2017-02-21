@@ -13,6 +13,17 @@ Vue.http.options.root = store.getters.getRoot;
 Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
 Vue.http.headers.common['Authorization'] = store.getters.getHeaderAuthorization;
 
+/*Vue.http.get("api/setting/vue/server")
+    .then(response => {
+        console.log(response);
+        console.log(response.body.server);        
+    });*/
+
+Vue.http.get("api/setting/vue/secret")
+    .then(response => {
+        console.log(response);
+        console.log(response.body.server);
+    });
 
 /*router.beforeEach(
     (to, from, next) => {
