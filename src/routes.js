@@ -12,6 +12,7 @@ import Confirm from './components/auth/Confirm.vue'
 /** DASHBOARD **/
 import Dash from './components/Dash.vue'
 import Dashboard from './components/Feed.vue'
+import Authorized from './components/auth/Authorized.vue'
 
  
 /** 404 **/
@@ -32,19 +33,23 @@ export const router = new VueRouter({
         {path: "/main",                     component: Index},
 
         /** AUTH **/
-        {path: "/login",                    component: Login},
-        {path: "/register",                 component: Registr},
+        {path: "/login",                    component: Login,   meta: {forAuth: false}},
+        {path: "/register",                 component: Registr, meta: {forAuth: false}},
         {path: '/confirm/:token',           component: Confirm},
 
         /** DASHBOARD **/
-        {path: '/dash',                     component: Dash,
-            auth: true,
+        {path: '/dash',                     component: Dash,    meta: {forAuth: true},
             children: [
                 {path: '', component: Dashboard},
                 //{path: 'profile', component: Profile},
-                {path: 'feed', component: Feed}/*,
+                {path: 'feed', component: Feed},/*,
                 {path: '', component: Dashboard},
                 {path: '', component: Dashboard}*/
+
+                /** Authorized **/
+                {path: 'authorized', component: Authorized},
+                /** 404 **/
+                {path: '*', component: Page404}
             ]
         
         },
@@ -55,7 +60,7 @@ export const router = new VueRouter({
         {path: "/feed",                     component: Feed},
 
         /** 404 **/
-        {path: '*',                         component: Page404}
+        {path: '*',                         component: Page404, meta: {description: '404 Error Page'}}
     ]
 });
 

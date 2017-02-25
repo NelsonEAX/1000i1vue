@@ -1,21 +1,37 @@
 <template>
-  <div class="container container-table">
-      <div class="row vertical-10p">
-        <div class="container">
-          <img src="/static/img/logo.png" class="center-block logo">
-          <div class="text-center col-sm-6 col-sm-offset-3">
-            <h1>You are lost.</h1>
-            <h4>This page doesn't exist.</h4>
-            <router-link to="/">Take me home.</router-link>
-          </div>
+    <section class="content">
+        <div class="error-page">
+            <h2 class="headline text-yellow"> 404</h2>
+
+            <div class="error-content">
+                <h3><i class="fa fa-warning text-yellow"></i> Упс! Страница не найдена.</h3>
+                <p>
+                    Мы не смогли найти страницу, которую Ты ищешь.<br>
+                    Но Ты можешь <a @click="fallback" href="#">вернуться назад</a>.
+                </p>
+            </div>
+            <!-- /.error-content -->
         </div>
-      </div>
-  </div>
+
+        <!--<router-link to="/">Take me home.</router-link>-->
+        <!-- /.error-page -->
+    </section>
 </template>
+
 <script>
   export default {
-
+      methods: {
+          fallback(){
+              this.$route.go(window.history.back());
+          }
+      }
   }
 </script>
+
+<style scoped>
+  .headline {
+    margin-top: -15px;
+  }
+</style>
 
 

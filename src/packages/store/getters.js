@@ -11,22 +11,6 @@ export default {
     },
     getHeaderAuthorization(state){
         return state.app.server.headers.authorization;
-    },
-    /**Auth*/
-    getAuthToken(state){
-        return state.app.auth.token;
-    },
-    getAuthExpiration(state){
-        return state.app.auth.expiration;
-    },
-    getAuthClientId(state){
-        return state.app.auth.client_id;
-    },
-    getAuthGrantType(state){
-        return state.app.auth.grant_type;
-    },
-    getAuthClientSecret(state){
-        return state.app.auth.client_secret;
-    },
+    },   
     
 };

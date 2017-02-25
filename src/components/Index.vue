@@ -11,21 +11,27 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <router-link tag="li" class="dropdown tasks-menu" to="/dash">
+                            <router-link tag="li" class="dropdown tasks-menu" to="/dash" v-if="isAuth">
                                 <a class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-tachometer"></i>
                                     <span class="label label-danger"></span>
                                 </a>
                             </router-link>
-                            <router-link tag="li" class="dropdown tasks-menu" to="/register">
+                            <router-link tag="li" class="dropdown tasks-menu" to="/register" v-if="!isAuth">
                                 <a class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-user-plus"></i>
                                     <span class="label label-danger"></span>
                                 </a>
                             </router-link>
-                            <router-link tag="li" class="dropdown tasks-menu" to="/login">
+                            <router-link tag="li" class="dropdown tasks-menu" to="/login" v-if="!isAuth">
                                 <a class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-sign-in"></i>
+                                    <span class="label label-danger"></span>
+                                </a>
+                            </router-link>
+                            <router-link tag="li" class="dropdown tasks-menu" to="/logout" v-if="isAuth">
+                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-sign-out"></i>
                                     <span class="label label-danger"></span>
                                 </a>
                             </router-link>
@@ -40,6 +46,11 @@
 
 <script>
     export default {
+        data(){
+            return{
+                isAuth: this.$store.getters.isAuth,
+            }
+        },
         components: {
 
         }

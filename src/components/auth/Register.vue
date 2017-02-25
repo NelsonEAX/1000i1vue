@@ -43,7 +43,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
-                        <button @click="register" type="submit" class="btn btn-primary btn-block btn-flat">
+                        <button @click="register" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="loading">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-lg fa-fw"></i> Регистрация
                         </button>
                     </div>
@@ -103,9 +103,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .logo-text{
-        font-family: 'Special Elite', cursive;
-    }
-</style>

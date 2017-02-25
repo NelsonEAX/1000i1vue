@@ -7,6 +7,7 @@ import Vuex from 'vuex'
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
+import moduleAuth from './modules/auth';
 
 Vue.use(Vuex)
 
@@ -20,18 +21,14 @@ export const store = new Vuex.Store({
                     authorization: 'Bearer ' + 'Vue.auth.getToken()',
                 }
 
-            },
-            auth: {
-                client_id: 2,
-                grant_type: 'password',
-                client_secret: 'zUxRqZVzGz4erCWkj6PObTTw5ugmHMhRdtvKWSiC',//null,
-                token: null,
-                expiration: null,
             }
         },
         user: true
     },
     getters,
     mutations,
-    actions
+    actions,
+    modules: {
+        auth: moduleAuth
+    }
 });
