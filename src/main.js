@@ -10,8 +10,6 @@ Vue.use(VueResource)
 //Vue.use(Auth)
 
 Vue.http.options.root = store.getters.getRoot;
-Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
-Vue.http.headers.common['Authorization'] = store.getters.getHeaderAuthorization;
 
 //Получаем с прод-сервера backend-server для текущего стенда / используем значения по умолчанию(значения prod'а)
 Vue.http.get("api/setting/vue/server")
@@ -21,6 +19,7 @@ Vue.http.get("api/setting/vue/server")
         if(response.body.server){
             store.dispatch('setNewRoot', response.body.server);
             Vue.http.options.root = store.getters.getRoot;
+            ///***old//Vue.http.options.root = response.body.server;
             //Получаем с backend'а текущий client_secret
             Vue.http.get("api/setting/vue/secret")
                 .then(response => {
@@ -38,14 +37,16 @@ Vue.http.get("api/setting/vue/server")
     });
 //Подгружаем токен
 store.dispatch('checkToken');
+Vue.http.headers.common['Authorization'] = store.getters.getHeaderAuthorization;
+Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
 
 router.beforeEach((to, from, next) => {
-    console.log(to); //###TODO: delete
-    console.log(from); //###TODO: delete
-    console.log(next); //###TODO: delete
-    console.log(to.auth); //###TODO: delete
+    console.log(to.fullPath); //###TODO: delete
+    //console.log(to); //###TODO: delete
+    //console.log(from); //###TODO: delete
+    //console.log(next); //###TODO: delete
 
-    if (to.matched.some(record => record.meta.forAuth)) {
+    if (to.matched.some(record => record.meta.forAuth === true)) {
         // этот путь требует авторизации, проверяем залогинен ли
         // пользователь, и если нет, перенаправляем на страницу логина
         if (!store.getters.isAuth) {
@@ -70,36 +71,7 @@ router.beforeEach((to, from, next) => {
     } else {
         next() // всегда так или иначе нужно вызвать next()!
     }
-
-    // window.console.log('Transition', transition)
-    /*if (to.auth && (to.router.app.$store.state.token === 'null')) {
-        window.console.log('Not authenticated')
-        next({
-            path: '/login',
-            query: { redirect: to.fullPath }
-        })
-    } else {*/
-        next()
-    //}
 })
-
-/*router.beforeEach(
-    (to, from, next) => {
-        if(to.matched.some(record => record.meta.isDash)){
-            if(Vue.auth.isAuthenticated()){
-                next({
-                    path: '/feed'
-                })
-            } else next()
-        } else if(to.matched.some(record => record.meta.isDash)){
-            if(!Vue.auth.isAuthenticated()){
-                next({
-                    path: '/login'
-                })
-            } else next()
-        } else next()
-    }
-);*/
 
 new Vue({
     el: '#app',

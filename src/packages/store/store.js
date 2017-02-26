@@ -8,6 +8,7 @@ import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 import moduleAuth from './modules/auth';
+import moduleUser from './modules/user';
 
 Vue.use(Vuex)
 
@@ -18,9 +19,8 @@ export const store = new Vuex.Store({
                 root: 'http://1000i1api:88',//'http://api.1000i1.ru',
                 headers:{
                     content_type: 'application/json',
-                    authorization: 'Bearer ' + 'Vue.auth.getToken()',
+                    authorization: 'Bearer ',
                 }
-
             }
         },
         user: true

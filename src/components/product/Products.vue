@@ -22,7 +22,7 @@
 
         /*hook*/
         created (){
-            this.$http.get('api/products')
+            this.$http.get('api/user')
                     .then(response => {
                 this.products = response.body
             })

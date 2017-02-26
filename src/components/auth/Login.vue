@@ -79,6 +79,9 @@
                             token: response.body.access_token,
                             expiration: response.body.expires_in*1000 + Date.now()
                         });
+                        this.$http.headers.common['Authorization'] = response.body.access_token;
+                        /*this.$store.dispatch('setHeaderAuthorization', response.body.access_token);
+                        this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;*/
                         this.loading = false;
                         this.$router.push("/dash");
                     }else{

@@ -6,5 +6,10 @@ export default {
         context.commit('setNewRoot', {
             newRoot: newRoot
         })
+    },
+    setHeaderAuthorization(context, token){
+        context.commit('setHeaderAuthorization', {
+            token: token
+        })
     }
 };
