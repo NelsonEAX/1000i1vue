@@ -38,13 +38,14 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <router-link tag="a" to="/register" v-if="!isAuth">Восстановить пароль</router-link>
+                        <router-link tag="a" to="/passrecover" v-if="!isAuth">Восстановить пароль</router-link>
                         <router-link tag="a" to="/login" v-if="!isAuth">Войти</router-link>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
                         <button @click="register" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="loading">
-                            <i v-if="loading" class="fa fa-refresh fa-spin fa-lg fa-fw"></i> Регистрация
+                            <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
+                            <span v-else>Регистрация</span>
                         </button>
                     </div>
                     <!-- /.col -->

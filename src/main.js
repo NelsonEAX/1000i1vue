@@ -14,8 +14,8 @@ Vue.http.options.root = store.getters.getRoot;
 //Получаем с прод-сервера backend-server для текущего стенда / используем значения по умолчанию(значения prod'а)
 Vue.http.get("api/setting/vue/server")
     .then(response => {
-        console.log(response);//###TODO: delete
-        console.log(response.body.server);//###TODO: delete
+        //console.log(response);//###TODO: delete
+        //console.log(response.body.server);//###TODO: delete
         if(response.body.server){
             store.dispatch('setNewRoot', response.body.server);
             Vue.http.options.root = store.getters.getRoot;
@@ -23,8 +23,8 @@ Vue.http.get("api/setting/vue/server")
             //Получаем с backend'а текущий client_secret
             Vue.http.get("api/setting/vue/secret")
                 .then(response => {
-                    console.log(response); //###TODO: delete
-                    console.log(response.body.secret);//###TODO: delete
+                    //console.log(response); //###TODO: delete
+                    //console.log(response.body.secret);//###TODO: delete
                     if(response.body.secret[0]){
                         store.dispatch('setClientSecret', response.body.secret[0]);
                     }else {
@@ -58,8 +58,8 @@ router.beforeEach((to, from, next) => {
             next()
         }
     } else if (to.matched.some(record => record.meta.forAuth === false )) {
-        // этот путь требует авторизации, проверяем залогинен ли
-        // пользователь, и если нет, перенаправляем на страницу логина
+        // эта страница недоступна авторизованным пользователям
+        // перенаправляем на страницу профиля
         if (store.getters.isAuth) {
             next({
                 path: '/dash/authorized',

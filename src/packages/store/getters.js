@@ -11,6 +11,13 @@ export default {
     },
     getHeaderAuthorization(state){
         return state.app.server.headers.authorization;
-    },   
-    
+    },
+    getHeaders(state){
+        return {
+            headers: {
+                'Authorization': state.app.server.headers.authorization,
+                'Content-Type': state.app.server.headers.content_type
+            }
+        }
+    },
 };

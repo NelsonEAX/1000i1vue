@@ -30,13 +30,14 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <router-link tag="a" to="/register">Восстановить пароль</router-link>
+                        <router-link tag="a" to="/passrecover">Восстановить пароль</router-link>
                         <router-link tag="a" to="/register">Регитсрация</router-link>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
                         <button @click="login" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="loading">
-                            <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i> Войти
+                            <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
+                            <span v-else>Войти</span>
                         </button>
                     </div>
                     <!-- /.col -->
@@ -60,7 +61,6 @@
         methods: {
             login(){
                 this.loading = true;
-                console.log(this.$store);
                 var data = {
                     client_id: this.$store.getters.getAuthClientId,
                     client_secret: this.$store.getters.getAuthClientSecret,
@@ -69,7 +69,6 @@
                     password: this.password
                 }
 
-                console.log('data', data);
                 this.$http.post("oauth/token", data)
                 .then(response => {
                     console.log(response);
@@ -79,9 +78,8 @@
                             token: response.body.access_token,
                             expiration: response.body.expires_in*1000 + Date.now()
                         });
-                        this.$http.headers.common['Authorization'] = response.body.access_token;
-                        /*this.$store.dispatch('setHeaderAuthorization', response.body.access_token);
-                        this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;*/
+                        //this.$store.dispatch('setHeaderAuthorization', response.body.access_token);
+                        this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;
                         this.loading = false;
                         this.$router.push("/dash");
                     }else{

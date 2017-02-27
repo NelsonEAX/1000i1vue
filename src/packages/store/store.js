@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
                 root: 'http://1000i1api:88',//'http://api.1000i1.ru',
                 headers:{
                     content_type: 'application/json',
-                    authorization: 'Bearer ',
+                    authorization: '',
                 }
             }
         },

@@ -3,11 +3,11 @@
     <header class="main-header">
       <a href="/" class="logo">
         <!-- mini logo for sidebar mini 40x50 pixels -->
-        <span class="logo-mini"><img src="/static/img/logo_sm.png" alt="Logo" class="img-responsive center-block"></span>
+        <span class="logo-mini"><img src="http://placehold.it/40x50/333333/ffffff?text=1000i1" alt="Logo" class="img-responsive center-block"></span>
         <!-- logo for regular state and mobile devices -->
         <div class="container logo-lg">
-          <div class="pull-left image"><img src="/static/img/logo_sm.png" alt="Logo" class="img-responsive"></div>
-          <div class="pull-left info">CoPilot</div>
+          <div class="pull-left image"><img src="http://placehold.it/120x50/333333/ffffff?text=1000i1" alt="Logo" class="img-responsive"></div>
+          <div class="pull-left info">.ru</div>
         </div>
       </a>
 
@@ -195,7 +195,7 @@
 
     <!-- Main Footer -->
     <footer class="main-footer">
-      <strong>Copyright &copy;  <a href="javascript:;">CoPilot</a>.</strong> All rights reserved.
+      <strong>Copyright &copy;  <a href="http://xor-dev.ru">XOR-DEV</a>.</strong> All rights reserved.
     </footer>
   </div>
   <!-- ./wrapper -->

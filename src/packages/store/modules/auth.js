@@ -89,9 +89,7 @@ export default {
         login(context, state){
             if(state.token){
                 context.commit('setLogin', state);
-                context.commit('setHeaderAuthorization', {
-                    token: state.token,
-                });
+                context.commit('setHeaderAuthorization', state);
             }else{
                 context.commit('unsetLogin');
             }
