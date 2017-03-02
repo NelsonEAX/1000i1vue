@@ -10,16 +10,18 @@
             <div class="login-box-body">
                 <p class="login-box-msg">Войдите для продолжения работы</p>
                 <p class="login-box-msg" v-if="error">{{error}}</p>
-                <div class="form-group has-feedback">
+                <div :class="{'form-group': true, 'has-feedback': true, 'has-error': errors.has('email') }">
                     <input
                         v-model="email"
+                        v-validate="'required|email'"
                         name="email"
                         class="form-control"
                         type="email"
                         placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}Help block with error</span>
                 </div>
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback has-error">
                     <input
                         v-model="password"
                         name="password"
@@ -27,6 +29,7 @@
                         type="password"
                         placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <span class="help-block text-center">Help block with error</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">

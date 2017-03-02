@@ -4,9 +4,18 @@ import { store } from './packages/store/store.js';
 import { router } from './routes.js';
 
 import VueResource from 'vue-resource'
+import VeeValidate from 'vee-validate';
 //import Auth from './packages/auth/Auth.js'
 
 Vue.use(VueResource)
+Vue.use(VeeValidate, {
+    locale: 'ru',
+    dictionary: {
+        ru: {
+            messages: attributesEn
+        }
+    }
+})
 //Vue.use(Auth)
 
 Vue.http.options.root = store.getters.getRoot;
