@@ -2,24 +2,24 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 /** ALL **/
-import Index from './components/Index.vue'
+import Index from './../components/Index.vue'
 
 /** AUTH **/
-import Login from './components/auth/Login.vue'
-import Registr from './components/auth/Register.vue'
-import Confirm from './components/auth/Confirm.vue'
+import Login from './../components/auth/Login.vue'
+import Registr from './../components/auth/Register.vue'
+import Confirm from './../components/auth/Confirm.vue'
 
 /** DASHBOARD **/
-import Dash from './components/Dash.vue'
-import Dashboard from './components/Feed.vue'
-import Authorized from './components/auth/Authorized.vue'
+import Dash from './../components/Dash.vue'
+import Dashboard from './../components/Feed.vue'
+import Authorized from './../components/auth/Authorized.vue'
 
  
 /** 404 **/
-import Page404 from './components/Page404.vue'
+import Page404 from './../components/Page404.vue'
 
 /** DEV **/
-import Feed from './components/Feed.vue'
+import Feed from './../components/Feed.vue'
 
 Vue.use(VueRouter)
 

@@ -1,21 +1,25 @@
 import Vue from 'vue'
 import App from './components/App.vue'
 import { store } from './packages/store/store.js';
-import { router } from './routes.js';
+import { validator } from './packages/validator.js';
+import { router } from './packages/routes.js';
+
 
 import VueResource from 'vue-resource'
-import VeeValidate from 'vee-validate';
+// import VeeValidate from 'vee-validate';
+// import VeeDictionary from './packages/locale/validate.js';
+
 //import Auth from './packages/auth/Auth.js'
 
 Vue.use(VueResource)
-Vue.use(VeeValidate, {
-    locale: 'ru',
-    dictionary: {
-        ru: {
-            messages: attributesEn
-        }
-    }
-})
+// Vue.use(VeeValidate, {
+//     locale: 'ru',
+//     dictionary: {
+//         ru: {
+//             messages: VeeDictionary
+//         }
+//     }
+// })
 //Vue.use(Auth)
 
 Vue.http.options.root = store.getters.getRoot;
@@ -86,5 +90,6 @@ new Vue({
     el: '#app',
     render: h => h(App),
     store,
-    router
+    router,
+    validator
 });

@@ -2,48 +2,51 @@
     <div class="register-page">
         <div class="register-box">
             <div class="register-logo">
-                <router-link tag="a" class="logo-text" to="/" v-if="!isAuth">
+                <router-link tag="a" class="logo-text" to="/">
                     <b>1000i1</b>.ru
                 </router-link>
             </div>
             <!-- /.register-logo -->
             <div class="register-box-body">
                 <p class="register-box-msg">Регистрация нового пользователя</p>
-                <div class="form-group has-feedback">
-                    <input
-                            v-model="email"
+                <div :class="this.$store.getters.getClassValid( fields.passed('email'), errors.has('email') )">
+                    <input  v-model="email"
+                            v-validate="this.$store.getters.getRuleEmail"
                             name="email"
                             class="form-control"
                             type="email"
                             placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
-                <div class="form-group has-feedback">
-                    <input
-                            v-model="password"
+                <div :class="this.$store.getters.getClassValid( fields.passed('password'), errors.has('password') )">
+                    <input  v-model="password"
+                            v-validate="this.$store.getters.getRulePassword"
                             name="password"
                             class="form-control"
                             type="password"
                             placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
-                    <input
-                            v-model="password"
-                            name="password"
+                <div :class="this.$store.getters.getClassValid( fields.passed('confirm'), errors.has('confirm') )">
+                    <input  v-model="confirm"
+                            v-validate="this.$store.getters.getRulePasswordConfirm"
+                            name="confirm"
                             class="form-control"
                             type="password"
-                            placeholder="Password">
+                            placeholder="Password confirm">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <span class="help-block text-center" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                    <span class="help-block text-center" v-show="errors.has('confirm')">{{ errors.first('confirm') }}</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
-                        <router-link tag="a" to="/passrecover" v-if="!isAuth">Восстановить пароль</router-link>
-                        <router-link tag="a" to="/login" v-if="!isAuth">Войти</router-link>
+                        <router-link tag="a" to="/passrecover">Восстановить пароль</router-link>
+                        <router-link tag="a" to="/login">Войти</router-link>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
-                        <button @click="register" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="loading">
+                        <button @click="register" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="fields.failed() || fields.clean('email') || fields.clean('password') || fields.clean('confirm') || loading">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
                             <span v-else>Регистрация</span>
                         </button>
@@ -63,6 +66,7 @@
                 name:'',
                 email:'',
                 password:'',
+                confirm:'',
                 loading: false
             }
         },
@@ -101,6 +105,6 @@
 //                this.$router.push("/feed")
                 })
             }
-        }
+        },
     }
 </script>

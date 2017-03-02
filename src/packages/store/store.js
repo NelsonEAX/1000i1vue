@@ -9,6 +9,7 @@ import getters from './getters';
 import mutations from './mutations';
 import moduleAuth from './modules/auth';
 import moduleUser from './modules/user';
+import moduleValidate from './modules/validate';
 
 Vue.use(Vuex)
 
@@ -29,6 +30,7 @@ export const store = new Vuex.Store({
     mutations,
     actions,
     modules: {
-        auth: moduleAuth
+        auth: moduleAuth,
+        validate: moduleValidate
     }
 });

@@ -10,26 +10,25 @@
             <div class="login-box-body">
                 <p class="login-box-msg">Войдите для продолжения работы</p>
                 <p class="login-box-msg" v-if="error">{{error}}</p>
-                <div :class="{'form-group': true, 'has-feedback': true, 'has-error': errors.has('email') }">
-                    <input
-                        v-model="email"
-                        v-validate="'required|email'"
-                        name="email"
-                        class="form-control"
-                        type="email"
-                        placeholder="Email">
+                <div :class="this.$store.getters.getClassValid( fields.passed('email'), errors.has('email') )">
+                    <input  v-model="email"
+                            v-validate="this.$store.getters.getRuleEmail"
+                            name="email"
+                            class="form-control"
+                            type="email"
+                            placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}Help block with error</span>
+                    <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
-                <div class="form-group has-feedback has-error">
-                    <input
-                        v-model="password"
-                        name="password"
-                        class="form-control"
-                        type="password"
-                        placeholder="Password">
+                <div :class="this.$store.getters.getClassValid( fields.passed('password'), errors.has('password') )">
+                    <input  v-model="password"
+                            v-validate="this.$store.getters.getRulePassword"
+                            name="password"
+                            class="form-control"
+                            type="password"
+                            placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    <span class="help-block text-center">Help block with error</span>
+                    <span class="help-block text-center" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
@@ -38,7 +37,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
-                        <button @click="login" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="loading">
+                        <button @click="login" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="fields.failed() || fields.clean('email') || fields.clean('password') || loading">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
                             <span v-else>Войти</span>
                         </button>
@@ -94,6 +93,9 @@
                     this.loading = false;
                 })
             }
+        },
+        created(){
+            console.log(this);
         }
     }
 </script>
