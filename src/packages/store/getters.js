@@ -20,4 +20,18 @@ export default {
             }
         }
     },
+    
+    /**Message*/
+    getMessageLoginTrue(state){
+        return state.app.message.loginTrue;
+    },
+    getMessageLoginFalse(state){
+        return state.app.message.loginFalse;
+    },
+    getMessageRegisterTrue(state){
+        return state.app.message.registerTrue;
+    },
+    getMessageRegisterFalse(state){
+        return state.app.message.registerFalse;
+    },
 };

@@ -9,13 +9,14 @@
             <!-- /.register-logo -->
             <div class="register-box-body">
                 <p class="register-box-msg">Регистрация нового пользователя</p>
-                <div :class="this.$store.getters.getClassValid( fields.passed('email'), errors.has('email') )">
+                <div :class="this.$store.getters.getClassValid( fields.passed('email') && result!==false, errors.has('email') || result===false )">
                     <input  v-model="email"
                             v-validate="this.$store.getters.getRuleEmail"
+                            @keydown="result = null"
                             name="email"
                             class="form-control"
                             type="email"
-                            placeholder="Email">
+                            :placeholder="this.$store.getters.getPlaceholderEmail">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
@@ -25,7 +26,7 @@
                             name="password"
                             class="form-control"
                             type="password"
-                            placeholder="Password">
+                            :placeholder="this.$store.getters.getPlaceholderPassword">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div :class="this.$store.getters.getClassValid( fields.passed('confirm'), errors.has('confirm') )">
@@ -34,10 +35,13 @@
                             name="confirm"
                             class="form-control"
                             type="password"
-                            placeholder="Password confirm">
+                            :placeholder="this.$store.getters.getPlaceholderPasswordConfirm">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                     <span class="help-block text-center" v-show="errors.has('confirm')">{{ errors.first('confirm') }}</span>
+                </div>
+                <div  v-show="result !== null" :class="this.$store.getters.getClassValid( result, !result )">
+                    <span class="help-block text-center">{{ result_message }}</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
@@ -46,7 +50,14 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
-                        <button @click="register" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="fields.failed() || fields.clean('email') || fields.clean('password') || fields.clean('confirm') || loading">
+                        <button @click="register"
+                                type="submit"
+                                class="btn btn-primary btn-block btn-flat"
+                                :disabled="fields.failed() ||
+                                    fields.clean('email') ||
+                                    fields.clean('password') ||
+                                    fields.clean('confirm') ||
+                                    loading || result===false">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
                             <span v-else>Регистрация</span>
                         </button>
@@ -63,11 +74,13 @@
     export default{
         data(){
             return{
-                name:'',
                 email:'',
                 password:'',
                 confirm:'',
-                loading: false
+                loading: false,
+                result: null,
+                result_message: '',
+                validate: false,
             }
         },
         methods: {
@@ -90,19 +103,36 @@
                     password_confirmation: this.password
                 }
 
-                data = {
+                /*data = {
                     email: this.makeemail()+'@email.ru',
                     password: 'qweqweqwe1',
                     password_confirmation: 'qweqweqwe1'
-                }
+                }*/
 
                 this.$http.post("api/register", data)
-                        .then(response => {
+                .then(response => {
                     console.log(response);
+
                     this.loading = false;
-//                this.$auth.setToken(response.body.access_token, response.body.expires_in*1000 + Date.now())
-//
-//                this.$router.push("/feed")
+                    this.result = response.body.state;
+                    if(this.result){
+                        console.log(response.body);
+                        this.result_message = this.$store.getters.getMessageRegisterTrue;
+                    }else{
+                        console.log(response.body);
+                        if( response.body.error.email[0] == 'Такое значение поля email уже существует.' ){
+                            this.result_message = this.$store.getters.getMessageRegisterFalse;
+                        }else{
+                            this.result_message = response.body.error.email[0];
+                        }
+                    }
+                }, erresponse => {
+                    if ( erresponse.body.error == 'invalid_credentials' )
+                        this.error_message = this.$store.getters.getMessageLoginFalse;
+                    else
+                        this.error_message = erresponse.body.message;
+                    this.error = true;
+                    this.loading = false;
                 })
             }
         },

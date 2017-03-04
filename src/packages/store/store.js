@@ -17,11 +17,18 @@ export const store = new Vuex.Store({
     state: {
         app: {
             server: {
-                root: 'http://1000i1api:88',//'http://api.1000i1.ru',
+                root: 'http://api.1000i1.ru',
                 headers:{
                     content_type: 'application/json',
                     authorization: '',
                 }
+            },
+            message: {
+                loginTrue: '',
+                loginFalse: 'Такой пользователь не найден',
+                registerTrue: 'Вы успешно зарегистрированы и можете войти в систему. ' +
+                              'Вам на почту отправленно письмо для подтверждения электрпонного адреса',
+                registerFalse: 'Данный электронный адрес уже занят',
             }
         },
         user: true

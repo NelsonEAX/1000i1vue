@@ -9,6 +9,12 @@ export default {
             password: 'required|alpha_num|min:8',
             passsword_confirm: 'required|alpha_num|min:8|confirmed:password',
         },
+        placeholder: {
+            email: 'Электронный адрес',
+            phone: 'Телефон',
+            password: 'Пароль',
+            passsword_confirm: 'Потдверждение пароля',
+        }
     },
     getters: {
         /** RULE **/
@@ -30,7 +36,21 @@ export default {
                 'has-success': param1,
                 'has-error': param2
             }
-        }
+        },
+
+        /** PLACEHOLDER **/
+        getPlaceholderEmail(state){
+            return state.placeholder.email;
+        },
+        getPlaceholderPhone(state){
+            return state.placeholder.email;
+        },
+        getPlaceholderPassword(state){
+            return state.placeholder.password;
+        },
+        getPlaceholderPasswordConfirm(state){
+            return state.placeholder.passsword_confirm;
+        },
     },
     mutations:{
     },

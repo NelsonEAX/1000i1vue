@@ -9,26 +9,28 @@
             <!-- /.login-logo -->
             <div class="login-box-body">
                 <p class="login-box-msg">Войдите для продолжения работы</p>
-                <p class="login-box-msg" v-if="error">{{error}}</p>
-                <div :class="this.$store.getters.getClassValid( fields.passed('email'), errors.has('email') )">
+                <div :class="this.$store.getters.getClassValid( fields.passed('email') && !error, errors.has('email') || error )">
                     <input  v-model="email"
                             v-validate="this.$store.getters.getRuleEmail"
+                            @keydown="error = false"
                             name="email"
                             class="form-control"
                             type="email"
-                            placeholder="Email">
+                            :placeholder="this.$store.getters.getPlaceholderEmail">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
-                <div :class="this.$store.getters.getClassValid( fields.passed('password'), errors.has('password') )">
+                <div :class="this.$store.getters.getClassValid( fields.passed('password') && !error, errors.has('password') || error )">
                     <input  v-model="password"
                             v-validate="this.$store.getters.getRulePassword"
+                            @keydown="error = false"
                             name="password"
                             class="form-control"
                             type="password"
-                            placeholder="Password">
+                            :placeholder="this.$store.getters.getPlaceholderPassword">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                    <span class="help-block text-center" v-show="error">{{ error_message }}</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
@@ -57,6 +59,7 @@
                 email:'',
                 password:'',
                 error: false,
+                error_message: '',
                 loading: false,
             }
         },
@@ -85,11 +88,19 @@
                         this.loading = false;
                         this.$router.push("/dash");
                     }else{
-                        this.error = response.body.message;
+                        if ( response.body.error == 'invalid_credentials' )
+                            this.error_message = this.$store.getters.getMessageLoginFalse;
+                        else
+                            this.error_message = response.body.message;
+                        this.error = true;
                         this.loading = false;
                     }
                 }, erresponse => {
-                    this.error = erresponse.body.message;
+                    if ( erresponse.body.error == 'invalid_credentials' )
+                        this.error_message = this.$store.getters.getMessageLoginFalse;
+                    else
+                        this.error_message = erresponse.body.message;
+                    this.error = true;
                     this.loading = false;
                 })
             }
