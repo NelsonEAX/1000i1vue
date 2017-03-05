@@ -34,4 +34,8 @@ export default {
     getMessageRegisterFalse(state){
         return state.app.message.registerFalse;
     },
+    getMessageAskConfirmEmail(state){
+        return state.app.message.askConfirmEmail;
+    },
+    
 };

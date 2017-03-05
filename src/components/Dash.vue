@@ -48,7 +48,7 @@
                                     <span class="label label-success"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have  message(s)</li>
+                                    <li class="header">Новые сообщения:</li>
                                     <li >
                                         <!-- inner menu: contains the messages -->
                                         <ul class="menu">
@@ -56,18 +56,18 @@
                                                 <a href="javascript:;">
                                                     <!-- Message title and timestamp -->
                                                     <h4>
-                                                        Support Team
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                        Тех-поддержка
+                                                        <small><i class="fa fa-clock-o"></i> 5 мин</small>
                                                     </h4>
                                                     <!-- The message -->
-                                                    <p>Why not consider this a test message?</p>
+                                                    <p>Tестовое сообщение?</p>
                                                 </a>
                                             </li>
                                             <!-- end message -->
                                         </ul>
                                         <!-- /.menu -->
                                     </li>
-                                    <li class="footer" ><a href="javascript:;">See All Messages</a></li>
+                                    <li class="footer" ><a href="javascript:;">Показать все</a></li>
                                 </ul>
                             </li>
                             <!-- /.messages-menu -->
@@ -83,19 +83,19 @@
                                     <span class="label label-warning"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have  notification(s)</li>
+                                    <li class="header">Новые оповещения:</li>
                                     <li >
                                         <!-- Inner Menu: contains the notifications -->
                                         <ul class="menu">
                                             <li><!-- start notification -->
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                                    <i class="fa fa-users text-aqua"></i> 5 новых замерщиков сегодня
                                                 </a>
                                             </li>
                                             <!-- end notification -->
                                         </ul>
                                     </li>
-                                    <li class="footer" ><a href="javascript:;">View all</a></li>
+                                    <li class="footer" ><a href="javascript:;">Показать все</a></li>
                                 </ul>
                             </li>
 
@@ -110,7 +110,7 @@
                                     <span class="label label-danger"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have  task(s)</li>
+                                    <li class="header">Новые задачи:</li>
                                     <li >
                                         <!-- Inner menu: contains the tasks -->
                                         <ul class="menu">
@@ -118,7 +118,7 @@
                                                 <a href="javascript:;">
                                                     <!-- Task title and progress text -->
                                                     <h3>
-                                                        Design some buttons
+                                                        Ленина 50Б
                                                         <small class="pull-right">20%</small>
                                                     </h3>
                                                     <!-- The progress bar -->
@@ -134,7 +134,7 @@
                                         </ul>
                                     </li>
                                     <li class="footer" >
-                                        <a href="javascript:;">View all tasks</a>
+                                        <a href="javascript:;">Показать все</a>
                                     </li>
                                 </ul>
                             </li>
@@ -200,46 +200,46 @@
                 <section class="sidebar">
 
                     <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
+                    <!--<div class="user-panel">-->
+                        <!--<div class="pull-left image">-->
 
-                        </div>
-                        <div class="pull-left info">
-                            <div><p class="white"></p></div>
-                            <a href="javascript:;"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
+                        <!--</div>-->
+                        <!--<div class="pull-left info">-->
+                            <!--<div><p class="white"></p></div>-->
+                            <!--<a href="javascript:;"><i class="fa fa-circle text-success"></i> Online</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!-- search form (Optional) -->
-                    <form  class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="search" id="search" class="search form-control" data-toggle="hideseek" placeholder="Search Menus" data-list=".sidebar-menu">
-                            <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
+                    <!--<form  class="sidebar-form">-->
+                        <!--<div class="input-group">-->
+                            <!--<input type="text" name="search" id="search" class="search form-control" data-toggle="hideseek" placeholder="Search Menus" data-list=".sidebar-menu">-->
+                            <!--<span class="input-group-btn">-->
+                                <!--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
+                                <!--</button>-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    <!--</form>-->
                     <!-- /.search form -->
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
-                        <li class="header">TOOLS</li>
-                        <li class="active pageLink" ><router-link to="/"><i class="fa fa-desktop"></i><span class="page">Dashboard</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/tables"><i class="fa fa-table"></i><span class="page">Tables</span></router-link></li>
+                        <li class="header">Главное</li>
+                        <li class="active pageLink" ><router-link to="/dash"><i class="fa fa-desktop"></i><span class="page">Главная</span></router-link></li>
+                        <li class="pageLink"><router-link to="/dash/tables"><i class="fa fa-table"></i><span class="page">Таблицы</span></router-link></li>
 
-                        <li class="header">ME</li>
-                        <li class="pageLink" ><router-link to="/dash/tasks"><i class="fa fa-tasks"></i><span class="page">Tasks</span></router-link></li>
-                        <li class="pageLink" ><router-link to="/dash/setting"><i class="fa fa-cog"></i><span class="page">Settings</span></router-link></li>
+                        <li class="header">То</li>
+                        <li class="pageLink" ><router-link to="/dash/tasks"><i class="fa fa-tasks"></i><span class="page">Задачи</span></router-link></li>
+                        <li class="pageLink" ><router-link to="/dash/setting"><i class="fa fa-cog"></i><span class="page">Настройки</span></router-link></li>
 
-                        <li class="header">LOGS</li>
-                        <li class="pageLink"><router-link to="/dash/access"><i class="fa fa-book"></i><span class="page">Access</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/server"><i class="fa fa-hdd-o"></i><span class="page">Server</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/repos"><i class="fa fa-heart"></i><span class="page">Repos</span><small class="label pull-right bg-green">AJAX</small></router-link></li>
+                        <li class="header">Сё</li>
+                        <li class="pageLink"><router-link to="/dash/access"><i class="fa fa-book"></i><span class="page">Книга</span></router-link></li>
+                        <li class="pageLink"><router-link to="/dash/server"><i class="fa fa-hdd-o"></i><span class="page">Сервер</span></router-link></li>
+                        <li class="pageLink"><router-link to="/dash/repos"><i class="fa fa-heart"></i><span class="page">Сердечко</span><small class="label pull-right bg-green">пыщ</small></router-link></li>
 
-                        <li class="header">PAGES</li>
-                        <li class="pageLink" ><router-link to="/dash/login"><i class="fa fa-circle-o text-yellow"></i> <span class="page">Login</span></router-link></li>
-                        <li class="pageLink" ><router-link to="/dash/404"><i class="fa fa-circle-o text-red"></i> <span class="page">404</span></router-link></li>
+                        <!--<li class="header">PAGES</li>-->
+                        <!--<li class="pageLink" ><router-link to="/dash/login"><i class="fa fa-circle-o text-yellow"></i> <span class="page">Login</span></router-link></li>-->
+                        <!--<li class="pageLink" ><router-link to="/dash/404"><i class="fa fa-circle-o text-red"></i> <span class="page">404</span></router-link></li>-->
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>
@@ -254,8 +254,8 @@
                         <small></small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="javascript:;"><i class="fa fa-home"></i>Home</a></li>
-                        <li class="active"></li>
+                        <li class="active"><a href="javascript:;"><i class="fa fa-home"></i>Главная</a></li>
+                        <!--<li class="active">ghj</li>-->
                     </ol>
                 </section>
                 <section class="content">

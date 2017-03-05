@@ -69,10 +69,36 @@
             </div>
             <!-- /.register-box-body -->
         </div>
+
+        <!-- { alert } -->
+        <alert :show.sync="modalRegisterFalse" placement="top" duration="3000" type="warning" width="400px" dismissable>
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <strong>Внимание!</strong>
+            <p class="text-center">{{ result_message }}</p>
+        </alert>
+        <!-- ./{ alert } -->
+        <!-- { modal } -->
+        <modal :show.sync="modalRegisterTrue" effect="fade" width="400" class="modal modal-info">
+            <div slot="modal-header" class="modal-header">
+                <h4 class="modal-title">
+                    <b>Поздравляем!</b>
+                </h4>
+            </div>
+            <div slot="modal-body" class="modal-body">
+                {{ this.$store.getters.getMessageRegisterTrue }} <br>
+                {{ this.$store.getters.getMessageAskConfirmEmail }}
+            </div>
+            <div slot="modal-footer" class="modal-footer">
+                <router-link tag="button" class="btn btn-outline" to="/login">Войти</router-link>
+            </div>
+        </modal>
+        <!-- ./{ modal } -->
     </div>
 </template>
 
 <script>
+    import { alert } from 'vue-strap';
+    import { modal } from 'vue-strap';
     export default{
         data(){
             return{
@@ -83,7 +109,14 @@
                 result: null,
                 result_message: '',
                 validate: false,
+
+                modalRegisterTrue: false,
+                modalRegisterFalse: false,
             }
+        },
+        components: {
+            modal,
+            alert,
         },
         methods: {
             makeemail()
@@ -131,7 +164,8 @@
                     this.result = response.body.state;
                     if(this.result){
                         console.log(response.body);
-                        this.result_message = this.$store.getters.getMessageRegisterTrue;
+                        this.modalRegisterTrue = true;
+//                        this.result_message = this.$store.getters.getMessageRegisterTrue;
                     }else{
                         console.log(response.body);
                         if( response.body.error.email[0] == 'Такое значение поля email уже существует.' ){
@@ -139,13 +173,15 @@
                         }else{
                             this.result_message = response.body.error.email[0];
                         }
+                        this.modalRegisterFalse = true;
                     }
                 }, erresponse => {
                     if ( erresponse.body.error == 'invalid_credentials' )
-                        this.error_message = this.$store.getters.getMessageLoginFalse;
+                        this.result_message = this.$store.getters.getMessageLoginFalse;
                     else
-                        this.error_message = erresponse.body.message;
-                    this.error = true;
+                        this.result_message = erresponse.body.message;
+                    this.modalRegisterFalse = true;
+                    this.result = false;
                     this.loading = false;
                 })
             }

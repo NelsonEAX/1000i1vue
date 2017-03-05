@@ -7,34 +7,9 @@ import { router } from './packages/routes.js';
 
 Vue.use(VueResource)
 
-Vue.http.options.root = store.getters.getRoot;
-
-//Получаем с прод-сервера backend-server для текущего стенда / используем значения по умолчанию(значения prod'а)
-Vue.http.get("api/setting/vue/server")
-    .then(response => {
-        //console.log(response);//###TODO: delete
-        //console.log(response.body.server);//###TODO: delete
-        if(response.body.server){
-            store.dispatch('setNewRoot', response.body.server);
-            Vue.http.options.root = store.getters.getRoot;
-            ///***old//Vue.http.options.root = response.body.server;
-            //Получаем с backend'а текущий client_secret
-            Vue.http.get("api/setting/vue/secret")
-                .then(response => {
-                    //console.log(response); //###TODO: delete
-                    //console.log(response.body.secret);//###TODO: delete
-                    if(response.body.secret[0]){
-                        store.dispatch('setClientSecret', response.body.secret[0]);
-                    }else {
-                        console.error('Ошибка: Не смогли получить секретный ключ ', response);
-                    }
-                });
-        }else{
-            console.error('Ошибка: Не смогли получить адресс сервера ', response);
-        }
-    });
-//Подгружаем токен
 store.dispatch('checkToken');
+Vue.http.options.root = store.getters.getRoot;
+console.log(Vue.http.options.root);//###TODO: delete
 Vue.http.headers.common['Authorization'] = store.getters.getHeaderAuthorization;
 Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
 
@@ -76,5 +51,31 @@ new Vue({
     render: h => h(App),
     store,
     router,
-    validator
+    validator,
+    beforeCreate(){
+        //Получаем с прод-сервера backend-server для текущего стенда / используем значения по умолчанию(значения prod'а)
+        Vue.http.get("http://api.1000i1.ru/api/setting/vue/server")
+            .then(response => {
+                //console.log(response);//###TODO: delete
+                //console.log(response.body.server);//###TODO: delete
+                if(response.body.server){
+                    store.dispatch('setNewRoot', response.body.server);
+                    Vue.http.options.root = store.getters.getRoot;
+                    ///***old//Vue.http.options.root = response.body.server;
+                    //Получаем с backend'а текущий client_secret
+                    Vue.http.get("api/setting/vue/secret")
+                        .then(response => {
+                            //console.log(response); //###TODO: delete
+                            //console.log(response.body.secret);//###TODO: delete
+                            if(response.body.secret[0]){
+                                store.dispatch('setClientSecret', response.body.secret[0]);
+                            }else {
+                                console.error('Ошибка: Не смогли получить секретный ключ ', response);
+                            }
+                        });
+                }else{
+                    console.error('Ошибка: Не смогли получить адресс сервера ', response);
+                }
+            });
+    }
 });

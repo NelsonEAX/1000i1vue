@@ -50,12 +50,18 @@ export default {
             state.expiration = payload.expiration;
             localStorage.setItem('token', payload.token);
             localStorage.setItem('expiration', payload.expiration);
+            if( payload.root ){
+                state.root = payload.root;
+                localStorage.setItem('root', payload.root);
+            }
         },
         unsetLogin(state){
             state.token = false;
             state.expiration = false;
+            state.root = false;
             localStorage.removeItem('token');
             localStorage.removeItem('expiration');
+            localStorage.removeItem('root');
         },
         setClientSecret(state, payload){
             state.client_secret = payload.newClientSecret;
@@ -65,6 +71,7 @@ export default {
         checkToken(context){
             var token = localStorage.getItem('token');
             var expiration = localStorage.getItem('expiration');
+            var root = localStorage.getItem('root');
 
             if( !token || !expiration )
             {
@@ -83,6 +90,7 @@ export default {
             });
             context.commit('setHeaderAuthorization', {
                 token: token,
+                root: root,
             });
             console.log('Токен норм');//###TODO: delete
         },

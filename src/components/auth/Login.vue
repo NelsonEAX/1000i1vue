@@ -52,10 +52,19 @@
             </div>
             <!-- /.login-box-body -->
         </div>
+
+        <!-- { alert } -->
+        <alert :show.sync="modalLoginFalse" placement="top" duration="3000" type="warning" width="400px" dismissable>
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <strong>Внимание!</strong>
+            <p class="text-center">{{ error_message }}</p>
+        </alert>
+        <!-- ./{ alert } -->
     </div>
 </template>
 
 <script>
+    import { alert } from 'vue-strap';
     export default{
         data(){
             return{
@@ -64,10 +73,15 @@
                 error: false,
                 error_message: '',
                 loading: false,
+                modalLoginFalse: false,
             }
+        },
+        components: {
+            alert,
         },
         methods: {
             keydown($event){
+                this.modalLoginFalse = false;
                 ($event.keyCode == 13) ? this.enter() : this.error = false ;
             },
             enter(){
@@ -95,11 +109,13 @@
                         this.error = false;
                         this.$store.dispatch('login',{
                             token: response.body.access_token,
-                            expiration: response.body.expires_in*1000 + Date.now()
+                            expiration: response.body.expires_in*1000 + Date.now(),
+                            root: this.$store.getters.getRoot,
                         });
                         //this.$store.dispatch('setHeaderAuthorization', response.body.access_token);
                         this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;
                         this.loading = false;
+                        this.modalLoginFalse = false;
                         this.$router.push("/dash");
                     }else{
                         if ( response.body.error == 'invalid_credentials' )
@@ -107,6 +123,7 @@
                         else
                             this.error_message = response.body.message;
                         this.error = true;
+                        this.modalLoginFalse = true;
                         this.loading = false;
                     }
                 }, erresponse => {
@@ -115,6 +132,7 @@
                     else
                         this.error_message = erresponse.body.message;
                     this.error = true;
+                    this.modalLoginFalse = true;
                     this.loading = false;
                 })
             }
