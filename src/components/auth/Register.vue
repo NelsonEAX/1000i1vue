@@ -12,7 +12,7 @@
                 <div :class="this.$store.getters.getClassValid( fields.passed('email') && result!==false, errors.has('email') || result===false )">
                     <input  v-model="email"
                             v-validate="this.$store.getters.getRuleEmail"
-                            @keydown="result = null"
+                            @keydown="keydown"
                             name="email"
                             class="form-control"
                             type="email"
@@ -23,6 +23,7 @@
                 <div :class="this.$store.getters.getClassValid( fields.passed('password'), errors.has('password') )">
                     <input  v-model="password"
                             v-validate="this.$store.getters.getRulePassword"
+                            @keydown.enter="enter"
                             name="password"
                             class="form-control"
                             type="password"
@@ -32,6 +33,7 @@
                 <div :class="this.$store.getters.getClassValid( fields.passed('confirm'), errors.has('confirm') )">
                     <input  v-model="confirm"
                             v-validate="this.$store.getters.getRulePasswordConfirm"
+                            @keydown.enter="enter"
                             name="confirm"
                             class="form-control"
                             type="password"
@@ -93,6 +95,18 @@
                     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
                 return text;
+            },
+            keydown($event){
+                ($event.keyCode == 13) ? this.enter() : this.result = null ;
+            },
+            enter(){
+                if( !this.fields.failed() &&
+                    !this.fields.clean('email') &&
+                    !this.fields.clean('password') &&
+                    !this.fields.clean('confirm') &&
+                    !this.loading && this.result!==false){
+                    return this.register();
+                }
             },
             register(){
 

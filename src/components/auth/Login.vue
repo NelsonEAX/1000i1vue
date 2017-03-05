@@ -12,7 +12,7 @@
                 <div :class="this.$store.getters.getClassValid( fields.passed('email') && !error, errors.has('email') || error )">
                     <input  v-model="email"
                             v-validate="this.$store.getters.getRuleEmail"
-                            @keydown="error = false"
+                            @keydown="keydown"
                             name="email"
                             class="form-control"
                             type="email"
@@ -23,7 +23,7 @@
                 <div :class="this.$store.getters.getClassValid( fields.passed('password') && !error, errors.has('password') || error )">
                     <input  v-model="password"
                             v-validate="this.$store.getters.getRulePassword"
-                            @keydown="error = false"
+                            @keydown="keydown"
                             name="password"
                             class="form-control"
                             type="password"
@@ -39,7 +39,10 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-5 pull-right">
-                        <button @click="login" type="submit" class="btn btn-primary btn-block btn-flat" :disabled="fields.failed() || fields.clean('email') || fields.clean('password') || loading">
+                        <button @click="login"
+                                type="submit"
+                                class="btn btn-primary btn-block btn-flat"
+                                :disabled="fields.failed() || fields.clean('email') || fields.clean('password') || loading || error">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
                             <span v-else>Войти</span>
                         </button>
@@ -64,6 +67,17 @@
             }
         },
         methods: {
+            keydown($event){
+                ($event.keyCode == 13) ? this.enter() : this.error = false ;
+            },
+            enter(){
+                if( !this.fields.failed() &&
+                    !this.fields.clean('email') &&
+                    !this.fields.clean('password') &&
+                    !this.loading && !this.error){
+                    return this.login();
+                }
+            },
             login(){
                 this.loading = true;
                 var data = {

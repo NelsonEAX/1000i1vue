@@ -1,9 +1,7 @@
 <template>
-    <div class="container" id="app">
-        <div>
-            <h1>FEED</h1>
-            <my-products></my-products>
-        </div>
+    <div>
+        <h1>FEED</h1>
+        <my-products></my-products>
     </div>
 </template>
 
