@@ -31,7 +31,7 @@
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
-                    <a @click="toggleSidebar = !toggleSidebar" class="sidebar-toggle" role="button">
+                    <a @click="toggleSwitchOff(); toggleSidebar = !toggleSidebar" class="sidebar-toggle" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Navbar Right Menu -->
@@ -148,17 +148,16 @@
                             }">
                                 <a @click="toggleSwitchUserMenu()">
                                     <!-- The user image in the navbar-->
-                                    <img src="/static/img/users/13101802.jpg" class="user-image" alt="User Image">
+                                    <img :src="this.$store.getters.getUserPhoto" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Николаев Николай</span>
+                                    <span class="hidden-xs">{{ this.$store.getters.getUserSurnameName }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="/static/img/users/13101802.jpg" class="img-circle" alt="User Image">
-                                        <p>
-                                            Николаев Николай
-                                            <small>Администратор</small>
+                                        <img :src="this.$store.getters.getUserPhoto" class="img-circle" alt="User Image">
+                                        <p>{{ this.$store.getters.getUserSurnameName }}
+                                            <small>{{ this.$store.getters.getUserRole }}</small>
                                         </p>
                                         <!--<h3 class="profile-username text-center">Николаев Николай</h3>-->
                                         <!--<p class="text-muted text-center">Администратор</p>-->
@@ -226,7 +225,7 @@
                     <ul class="sidebar-menu">
                         <li class="header">Главное</li>
                         <li class="active pageLink" ><router-link to="/dash"><i class="fa fa-desktop"></i><span class="page">Главная</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/tables"><i class="fa fa-table"></i><span class="page">Таблицы</span></router-link></li>
+                        <li class="pageLink"><router-link to="/dash/feed"><i class="fa fa-table"></i><span class="page">Таблицы</span></router-link></li>
 
                         <li class="header">То</li>
                         <li class="pageLink" ><router-link to="/dash/tasks"><i class="fa fa-tasks"></i><span class="page">Задачи</span></router-link></li>
@@ -339,6 +338,15 @@ module.exports = {
             this.$store.dispatch('login', {});
             this.$router.push("/login");
         }
+    },
+    created(){
+        console.log('Получаю данные Юзера');//###TODO: delete
+        //После авторизации полуаем данные юзера с сервера
+        this.$http.get('api/user', this.$store.getters.getHeaders)
+        .then(response => {
+            console.log(response.body);//###TODO: delete
+            this.$store.dispatch('setUserInfo',response.body.user);
+        })
     }
 }
 </script>

@@ -4,15 +4,43 @@
 
 export default {
     state: {
-        client_id: 2,
-        grant_type: 'password',
-        client_secret: 'zUxRqZVzGz4erCWkj6PObTTw5ugmHMhRdtvKWSiC',//null,
-        token: null,
-        expiration: null,
+        login: null,
+        name: null,
+        surname: null,
+        patronymic: null,
+        phone: null,
+        email: null,
+        photo: null,
+        birthday: null,
+        rule: {
+            eax: null,
+            admin: null,
+            confirmed: null,
+        }
     },
     getters: {
-        /**Auth*/
-        isAuth(state){
+        
+        
+        /** User Role */
+        isEAX(state){
+            if(state.rule.eax)
+                return true;
+            else
+                return false;
+        },
+        isAdmin(state){
+            if(state.rule.admin)
+                return true;
+            else
+                return false;
+        },
+        isConfirmed(state){
+            if(state.rule.confirmed)
+                return true;
+            else
+                return false;
+        },
+       /* isAuth(state){
             if(state.token)
                 return true;
             else
@@ -30,76 +58,73 @@ export default {
         },
         getAuthToken(state){
             return state.token;
+        },*/
+        /** User Properties */
+        getUserEmail(state){
+            return state.email;
         },
-        getAuthExpiration(state){
-            return state.expiration;
+        getUserSurnameName(state){
+            if( state.surname && state.name ){
+                //Николаев Николай
+                return state.surname + " " + state.name;
+            }
+            return "Неизвестный"
         },
-        getAuthClientId(state){
-            return state.client_id;
+        getUserPhoto(state){
+            if(state.photo){
+                return '/static/img/users/' + state.photo;
+            }
+            return '/static/img/users/noname.jpg';
         },
-        getAuthGrantType(state){
-            return state.grant_type;
-        },
-        getAuthClientSecret(state){
-            return state.client_secret;
-        },
+
+
+
+        getUserRole(state){
+            if(state.rule.eax){
+                return "Владыка";
+            }
+            if(state.rule.admin){
+                return "Администратор";
+            }
+            return "Новичок";
+        }
     },
     mutations:{
-        setLogin(state, payload){
-            state.token = payload.token;
-            state.expiration = payload.expiration;
-            localStorage.setItem('token', payload.token);
-            localStorage.setItem('expiration', payload.expiration);
+        setUserInfo(state, user){
+            state.login             = user.login            ? user.login : null;
+            state.name              = user.name             ? user.name : null;
+            state.surname           = user.surname          ? user.surname : null;
+            state.patronymic        = user.patronymic       ? user.patronymic : null;
+            state.phone             = user.phone            ? user.phone : null;
+            state.email             = user.email            ? user.email : null;
+            state.photo             = user.photo            ? user.photo : null;
+            state.birthday          = user.birthday         ? user.birthday : null;
+            
+            state.rule.eax          = user.rule.eax         ? user.rule.eax : null;
+            state.rule.admin        = user.rule.admin       ? user.rule.admin : null;
+            state.rule.confirmed    = user.rule.confirmed   ? user.rule.confirmed : null;
         },
-        unsetLogin(state){
-            state.token = false;
-            state.expiration = false;
-            localStorage.removeItem('token');
-            localStorage.removeItem('expiration');
+        unsetUserInfo(state){
+            state.login             = null;
+            state.name              = null;
+            state.surname           = null;
+            state.patronymic        = null;
+            state.phone             = null;
+            state.email             = null;
+            state.photo             = null;
+            state.birthday          = null;
+            
+            state.rule.eax          = null;
+            state.rule.admin        = null;
+            state.rule.confirmed    = null;
         },
-        setClientSecret(state, payload){
-            state.client_secret = payload.newClientSecret;
-        }
     },
     actions: {
-        checkToken(context){
-            var token = localStorage.getItem('token');
-            var expiration = localStorage.getItem('expiration');
-
-            if( !token || !expiration )
-            {
-                console.log('Токен отсутствует');//###TODO: delete
-                return null;
-            }
-
-            if(Date.now() > parseInt(expiration)){
-                console.log('Токен устарел, удаляем');//###TODO: delete
-                context.commit('unsetLogin');
-            }
-
-            context.commit('setLogin', {
-                token: token,
-                expiration: expiration,
-            });
-            context.commit('setHeaderAuthorization', {
-                token: token,
-            });
-            console.log('Токен норм');//###TODO: delete
+        setUserInfo(context, user){
+            context.commit('setUserInfo', user);
         },
-        login(context, state){
-            if(state.token){
-                context.commit('setLogin', state);
-                context.commit('setHeaderAuthorization', {
-                    token: state.token,
-                });
-            }else{
-                context.commit('unsetLogin');
-            }
+        unsetUserInfo(context){
+            context.commit('unsetUserInfo');
         },
-        setClientSecret(context, newClientSecret){
-            context.commit('setClientSecret', {
-                newClientSecret: newClientSecret,
-            });
-        }
     }
 };

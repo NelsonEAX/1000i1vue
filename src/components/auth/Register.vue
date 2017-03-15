@@ -145,28 +145,34 @@
 
                 this.loading = true;
                 var data = {
+                    client_id: this.$store.getters.getAuthClientId,
+                    client_secret: this.$store.getters.getAuthClientSecret,
+                    grant_type: this.$store.getters.getAuthGrantType,
                     email: this.email,
+                    username: this.email,
                     password: this.password,
                     password_confirmation: this.password
                 }
 
-                /*data = {
-                    email: this.makeemail()+'@email.ru',
-                    password: 'qweqweqwe1',
-                    password_confirmation: 'qweqweqwe1'
-                }*/
-
                 this.$http.post("api/register", data)
                 .then(response => {
-                    console.log(response);
-
-                    this.loading = false;
-                    this.result = response.body.state;
-                    if(this.result){
-                        console.log(response.body);
-                        this.modalRegisterTrue = true;
-//                        this.result_message = this.$store.getters.getMessageRegisterTrue;
+                    console.log(this, response);
+                    //this.loading = false;
+                    //this.result = response.body.state;
+                    if(response.body.access_token){
+                        this.result = true;
+                        this.$store.dispatch('login',{
+                            token: response.body.access_token,
+                            expiration: response.body.expires_in*1000 + Date.now(),
+                            root: this.$store.getters.getRoot,
+                        });
+                        //this.$store.dispatch('setHeaderAuthorization', response.body.access_token);
+                        this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;
+                        this.loading = false;
+                        this.$router.push("/dash");
                     }else{
+                        this.loading = false;
+                        this.result = response.body.state;
                         console.log(response.body);
                         if( response.body.error.email[0] == 'Такое значение поля email уже существует.' ){
                             this.result_message = this.$store.getters.getMessageRegisterFalse;

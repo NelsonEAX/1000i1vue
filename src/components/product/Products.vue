@@ -22,10 +22,7 @@
 
         /*hook*/
         created (){
-            this.$http.get('api/user', this.$store.getters.getHeaders)
-                    .then(response => {
-                this.products = response.body
-            })
+
         },
     }
 </script>

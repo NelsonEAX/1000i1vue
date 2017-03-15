@@ -59,9 +59,10 @@ export default {
             state.token = false;
             state.expiration = false;
             state.root = false;
-            localStorage.removeItem('token');
-            localStorage.removeItem('expiration');
-            localStorage.removeItem('root');
+            // localStorage.removeItem('token');
+            // localStorage.removeItem('expiration');
+            // localStorage.removeItem('root');
+            localStorage.clear();
         },
         setClientSecret(state, payload){
             state.client_secret = payload.newClientSecret;
@@ -82,6 +83,7 @@ export default {
             if(Date.now() > parseInt(expiration)){
                 console.log('Токен устарел, удаляем');//###TODO: delete
                 context.commit('unsetLogin');
+                context.commit('unsetUserInfo');
             }
 
             context.commit('setLogin', {
@@ -100,6 +102,7 @@ export default {
                 context.commit('setHeaderAuthorization', state);
             }else{
                 context.commit('unsetLogin');
+                context.commit('unsetUserInfo');
             }
         },
         setClientSecret(context, newClientSecret){

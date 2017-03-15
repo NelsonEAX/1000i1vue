@@ -31,13 +31,13 @@ export const store = new Vuex.Store({
                 askConfirmEmail: 'Вам на почту отправленно письмо для подтверждения электронного адреса',
             }
         },
-        user: true
     },
     getters,
     mutations,
     actions,
     modules: {
         auth: moduleAuth,
-        validate: moduleValidate
+        validate: moduleValidate,
+        user: moduleUser,
     }
 });
