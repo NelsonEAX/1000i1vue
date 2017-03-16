@@ -11,7 +11,8 @@ import Confirm from './../components/auth/Confirm.vue'
 
 /** DASHBOARD **/
 import Dash from './../components/Dash.vue'
-import Dashboard from './../components/Feed.vue'
+import Main from './../components/Feed.vue'
+import Profile from './../components/Feed.vue'
 import Authorized from './../components/auth/Authorized.vue'
 
  
@@ -57,8 +58,27 @@ export const router = new VueRouter({
         /** DASHBOARD **/
         {path: '/dash',                     component: Dash,    meta: getPageRule([1,-1,-1,-1]),
             children: [
-                {path: '', component: Dashboard,    meta: getPageRule([1,-1,-1,-1])},
-                //{path: 'profile', component: Profile},
+                {
+                    path: 'main', 
+                    component: Main,
+                    name: 'Главная',
+                    alias: '/',
+                    meta: {
+                        rule: getPageRule([1,-1,-1,-1]),
+                        icon: 'fa fa-tachometer',
+                        description: 'Описание страницы главная'
+                    }
+                },
+                {
+                    path: 'profile', 
+                    component: Profile,
+                    name: 'Профиль',
+                    meta: {
+                        rule: getPageRule([1,-1,-1,-1]),
+                        icon: 'fa fa-user',
+                        description: 'Описание страницы профиль'
+                    }
+                },
                 {path: 'feed', component: Feed,    meta: getPageRule([1,1,1,1])},/*,
                 {path: '', component: Dashboard},
                 {path: '', component: Dashboard}*/

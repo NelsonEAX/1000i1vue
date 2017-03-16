@@ -2,6 +2,10 @@
     <div>
         <h1>FEED</h1>
         <my-products></my-products>
+
+
+
+
     </div>
 </template>
 
