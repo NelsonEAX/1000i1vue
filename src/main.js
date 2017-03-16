@@ -15,7 +15,7 @@ Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
 
 router.beforeEach((to, from, next) => {
     console.log(to.fullPath); //###TODO: delete
-    //console.log(to); //###TODO: delete
+    console.log(to); //###TODO: delete
     //console.log(from); //###TODO: delete
     //console.log(next); //###TODO: delete
 
@@ -35,7 +35,7 @@ router.beforeEach((to, from, next) => {
         // перенаправляем на страницу профиля
         if (store.getters.isAuth) {
             next({
-                path: '/dash/authorized',
+                path: '/my/authorized',
                 query: { redirect: to.fullPath }
             })
         } else {

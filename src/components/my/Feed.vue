@@ -10,11 +10,10 @@
 </template>
 
 <script>
-    import Products from './product/Products.vue'
+    import Products from './../product/Products.vue'
     export default {
         components: {
             'my-products': Products
         }
     }
 </script>
-
