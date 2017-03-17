@@ -11,8 +11,10 @@ import Confirm from './../components/auth/Confirm.vue'
 
 /** DASHBOARD **/
 import Shell from './../components/my/Shell.vue'
-import Dashboard from './../components/my/Feed.vue'
-import Profile from './../components/my/Feed.vue'
+import Dashboard from './../components/my/Dashboard.vue'
+import Profile from './../components/my/Profile.vue'
+
+
 import Authorized from './../components/auth/Authorized.vue'
 
 

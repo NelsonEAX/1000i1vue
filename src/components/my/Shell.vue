@@ -224,7 +224,7 @@
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
                         <li class="header">Главное</li>
-                        <router-link tag="li" class="pageLink" to="/my/dashboard"><a><i class="fa fa-main"></i><span class="page">Главная</span></a></router-link>
+                        <router-link tag="li" class="pageLink" to="/my/dashboard"><a><i class="fa fa-desktop"></i><span class="page">Главная</span></a></router-link>
                         <router-link tag="li" class="pageLink" to="/my/profile"><a><i class="fa fa-user"></i><span class="page">Профиль</span></a></router-link>
 
                         <li class="header">То</li>
