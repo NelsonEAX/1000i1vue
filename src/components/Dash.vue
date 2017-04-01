@@ -183,7 +183,7 @@
                                             <router-link tag="a" to="/dash/profile" class="btn btn-default btn-flat">Профиль</router-link>
                                         </div>
                                         <div class="pull-right">
-                                            <a @click="logout" class="btn btn-default btn-flat">Выйти</a>
+                                            <a @click="logout" id="logout" class="btn btn-default btn-flat">Выйти</a>
                                         </div>
                                     </li>
                                 </ul>

@@ -43,7 +43,7 @@
                     <span class="help-block text-center" v-show="errors.has('confirm')">{{ errors.first('confirm') }}</span>
                 </div>
                 <div  v-show="result !== null" :class="this.$store.getters.getClassValid( result, !result )">
-                    <span class="help-block text-center">{{ result_message }}</span>
+                    <span class="help-block text-center" id="result_message">{{ result_message }}</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">

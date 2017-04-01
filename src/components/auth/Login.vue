@@ -30,7 +30,7 @@
                             :placeholder="this.$store.getters.getPlaceholderPassword">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('password')">{{ errors.first('password') }}</span>
-                    <span class="help-block text-center" v-show="error">{{ error_message }}</span>
+                    <span class="help-block text-center" id="error_message" v-show="error">{{ error_message }}</span>
                 </div>
                 <div class="row">
                     <div class="col-xs-7">
