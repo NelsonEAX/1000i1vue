@@ -8,7 +8,7 @@
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" :src="this.$store.getters.getUserPhoto" alt="User profile picture">
 
-                        <h3 class="profile-username text-center">{{ this.$store.getters.getUserSurnameName }}</h3>
+                        <h3 class="profile-username text-center">{{ this.$store.getters.getUserLastnameName }}</h3>
 
                         <p class="text-muted text-center">{{ this.$store.getters.getUserRole }}</p>
 

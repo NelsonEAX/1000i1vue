@@ -150,13 +150,13 @@
                                     <!-- The user image in the navbar-->
                                     <img :src="this.$store.getters.getUserPhoto" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">{{ this.$store.getters.getUserSurnameName }}</span>
+                                    <span class="hidden-xs">{{ this.$store.getters.getUserLastnameName }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img :src="this.$store.getters.getUserPhoto" class="img-circle" alt="User Image">
-                                        <p>{{ this.$store.getters.getUserSurnameName }}
+                                        <p>{{ this.$store.getters.getUserLastnameName }}
                                             <small>{{ this.$store.getters.getUserRole }}</small>
                                         </p>
                                         <!--<h3 class="profile-username text-center">Николаев Николай</h3>-->
@@ -228,6 +228,7 @@
                         <router-link tag="li" class="pageLink" to="/my/profile"><a><i class="fa fa-user"></i><span class="page">Профиль</span></a></router-link>
 
                         <li class="header">То</li>
+                        <router-link tag="li" class="pageLink" to="/my/product"><a><i class="fa fa-th"></i><span class="page">Продукция</span></a></router-link>
                         <router-link tag="li" class="pageLink" to="/my/tasks"><a><i class="fa fa-tasks"></i><span class="page">Задачи</span></a></router-link>
                         <router-link tag="li" class="pageLink" to="/my/setting"><a><i class="fa fa-cog"></i><span class="page">Настройки</span></a></router-link>
 

@@ -6,8 +6,8 @@ export default {
     state: {
         login: null,
         name: null,
-        surname: null,
-        patronymic: null,
+        lastname: null,
+        middlename: null,
         phone: null,
         email: null,
         photo: null,
@@ -63,10 +63,10 @@ export default {
         getUserEmail(state){
             return state.email;
         },
-        getUserSurnameName(state){
-            if( state.surname && state.name ){
+        getUserLastnameName(state){
+            if( state.lastname && state.name ){
                 //Николаев Николай
-                return state.surname + " " + state.name;
+                return state.lastname + " " + state.name;
             }
             return "Неизвестный"
         },
@@ -93,8 +93,8 @@ export default {
         setUserInfo(state, user){
             state.login             = user.login            ? user.login : null;
             state.name              = user.name             ? user.name : null;
-            state.surname           = user.surname          ? user.surname : null;
-            state.patronymic        = user.patronymic       ? user.patronymic : null;
+            state.lastname          = user.lastname         ? user.lastname : null;
+            state.middlename        = user.middlename       ? user.middlename : null;
             state.phone             = user.phone            ? user.phone : null;
             state.email             = user.email            ? user.email : null;
             state.photo             = user.photo            ? user.photo : null;
@@ -107,8 +107,8 @@ export default {
         unsetUserInfo(state){
             state.login             = null;
             state.name              = null;
-            state.surname           = null;
-            state.patronymic        = null;
+            state.lastname          = null;
+            state.middlename        = null;
             state.phone             = null;
             state.email             = null;
             state.photo             = null;
