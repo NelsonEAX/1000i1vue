@@ -166,13 +166,13 @@
                                     <li class="user-body">
                                         <div class="row">
                                             <div class="col-xs-4 text-center">
-                                                <router-link tag="a" to="/dash/qwe">Заказы</router-link>
+                                                <router-link tag="a" to="/my/qwe">Заказы</router-link>
                                             </div>
                                             <div class="col-xs-4 text-center">
-                                                <router-link tag="a" to="/dash/asd">Продажи</router-link>
+                                                <router-link tag="a" to="/my/asd">Продажи</router-link>
                                             </div>
                                             <div class="col-xs-4 text-center">
-                                                <router-link tag="a" to="/dash/zxc">Друзья</router-link>
+                                                <router-link tag="a" to="/my/zxc">Друзья</router-link>
                                             </div>
                                         </div>
                                         <!-- /.row -->
@@ -180,7 +180,7 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <router-link tag="a" to="/dash/profile" class="btn btn-default btn-flat">Профиль</router-link>
+                                            <router-link tag="a" to="/my/profile" class="btn btn-default btn-flat">Профиль</router-link>
                                         </div>
                                         <div class="pull-right">
                                             <a @click="logout" id="logout" class="btn btn-default btn-flat">Выйти</a>
@@ -224,21 +224,21 @@
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
                         <li class="header">Главное</li>
-                        <li class="active pageLink" ><router-link to="/dash"><i class="fa fa-desktop"></i><span class="page">Главная</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/feed"><i class="fa fa-table"></i><span class="page">Таблицы</span></router-link></li>
+                        <router-link tag="li" class="pageLink" to="/my/dashboard"><a><i class="fa fa-desktop"></i><span class="page">Главная</span></a></router-link>
+                        <router-link tag="li" class="pageLink" to="/my/profile"><a><i class="fa fa-user"></i><span class="page">Профиль</span></a></router-link>
 
                         <li class="header">То</li>
-                        <li class="pageLink" ><router-link to="/dash/tasks"><i class="fa fa-tasks"></i><span class="page">Задачи</span></router-link></li>
-                        <li class="pageLink" ><router-link to="/dash/setting"><i class="fa fa-cog"></i><span class="page">Настройки</span></router-link></li>
+                        <router-link tag="li" class="pageLink" to="/my/tasks"><a><i class="fa fa-tasks"></i><span class="page">Задачи</span></a></router-link>
+                        <router-link tag="li" class="pageLink" to="/my/setting"><a><i class="fa fa-cog"></i><span class="page">Настройки</span></a></router-link>
 
                         <li class="header">Сё</li>
-                        <li class="pageLink"><router-link to="/dash/access"><i class="fa fa-book"></i><span class="page">Книга</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/server"><i class="fa fa-hdd-o"></i><span class="page">Сервер</span></router-link></li>
-                        <li class="pageLink"><router-link to="/dash/repos"><i class="fa fa-heart"></i><span class="page">Сердечко</span><small class="label pull-right bg-green">пыщ</small></router-link></li>
+                        <router-link tag="li" class="pageLink" to="/my/access"><a><i class="fa fa-book"></i><span class="page">Книга</span></a></router-link>
+                        <router-link tag="li" class="pageLink" to="/my/server"><a><i class="fa fa-hdd-o"></i><span class="page">Сервер</span></a></router-link>
+                        <router-link tag="li" class="pageLink" to="/my/repos"><a><i class="fa fa-heart"></i><span class="page">Сердечко</span><small class="label pull-right bg-green">пыщ</small></a></router-link>
 
                         <!--<li class="header">PAGES</li>-->
-                        <!--<li class="pageLink" ><router-link to="/dash/login"><i class="fa fa-circle-o text-yellow"></i> <span class="page">Login</span></router-link></li>-->
-                        <!--<li class="pageLink" ><router-link to="/dash/404"><i class="fa fa-circle-o text-red"></i> <span class="page">404</span></router-link></li>-->
+                        <!--<li class="pageLink" ><router-link to="/my/login"><i class="fa fa-circle-o text-yellow"></i> <span class="page">Login</span></router-link></li>-->
+                        <!--<li class="pageLink" ><router-link to="/my/404"><i class="fa fa-circle-o text-red"></i> <span class="page">404</span></router-link></li>-->
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>
@@ -250,11 +250,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        <small></small>
+                        {{ $route.name.toUpperCase() }}
+                        <small>{{ $route.meta.description }}</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="javascript:;"><i class="fa fa-home"></i>Главная</a></li>
-                        <!--<li class="active">ghj</li>-->
+                        <router-link tag="li" to="/my"><a><i class="fa fa-dashboard"></i>Главная</a></router-link>
+                        <!-- <li class=""><a href="javascript:;"><i class="fa fa-dashboard"></i>Главная</a></li> -->
+                        <li class="active">{{ $route.name }}</li>
                     </ol>
                 </section>
                 <section class="content">
@@ -276,7 +278,7 @@
 <script>
 
 module.exports = {
-    name: 'Dash',
+    name: 'Shell',
     data: function () {
         return {
             toggleSidebar: false,

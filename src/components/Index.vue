@@ -11,7 +11,7 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <router-link tag="li" class="dropdown tasks-menu" to="/dash" v-if="isAuth">
+                            <router-link tag="li" class="dropdown tasks-menu" to="/my" v-if="isAuth">
                                 <a class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-tachometer"></i>
                                     <span class="label label-danger"></span>
@@ -62,4 +62,3 @@
         margin-left: 0px;
     }
 </style>
-

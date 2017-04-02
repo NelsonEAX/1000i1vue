@@ -169,7 +169,7 @@
                         //this.$store.dispatch('setHeaderAuthorization', response.body.access_token);
                         this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;
                         this.loading = false;
-                        this.$router.push("/dash");
+                        this.$router.push("/my");
                     }else{
                         this.loading = false;
                         this.result = response.body.state;

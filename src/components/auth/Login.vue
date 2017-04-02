@@ -116,7 +116,7 @@
                         this.$http.headers.common['Authorization'] = this.$store.getters.getHeaderAuthorization;
                         this.loading = false;
                         this.modalLoginFalse = false;
-                        this.$router.push("/dash");
+                        this.$router.push("/my");
                     }else{
                         if ( response.body.error == 'invalid_credentials' )
                             this.error_message = this.$store.getters.getMessageLoginFalse;
