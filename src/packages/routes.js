@@ -13,6 +13,7 @@ import Confirm from './../components/auth/Confirm.vue'
 import Shell from './../components/my/Shell.vue'
 import Dashboard from './../components/my/Dashboard.vue'
 import Profile from './../components/my/Profile.vue'
+import Products from './../components/my/product/Products.vue'
 
 
 import Authorized from './../components/auth/Authorized.vue'
@@ -81,6 +82,21 @@ export const router = new VueRouter({
                         description: 'Описание страницы профиль'
                     }
                 },
+                {
+                    path: 'product',
+                    component: Products,
+                    name: 'Продукция',
+                    meta: {
+                        rule: getPageRule([1,-1,-1,-1]),
+                        icon: 'fa fa-th',
+                        description: 'Товары для заказа'
+                    }
+                },
+
+
+
+
+
                 {
                    path: 'feed',
                    component: Feed,
