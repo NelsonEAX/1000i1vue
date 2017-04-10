@@ -23,6 +23,14 @@ export const store = new Vuex.Store({
                     authorization: '',
                 }
             },
+            storage:{
+                default: '/static/img/users/noname.jpg',
+                defaultCategory: '/static/img/users/noname.jpg',
+                defaultProduct: '/static/img/users/noname.jpg',
+                defaultUser: '/static/img/users/noname.jpg',
+                image: '/api/image/',
+                user: '/static/img/users/',
+            },
             message: {
                 loginTrue: '',
                 loginFalse: 'Такой пользователь не найден',

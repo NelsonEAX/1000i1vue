@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+//import Vue1000i1Helpers from './packages/plugin.js';
 import App from './components/App.vue'
 import { store } from './packages/store/store.js';
 import { validator } from './packages/validator.js';
 import { router } from './packages/routes.js';
 
 Vue.use(VueResource)
+Vue.use(VueAwesomeSwiper)//
 
 store.dispatch('checkToken');
 Vue.http.options.root = store.getters.getRoot;

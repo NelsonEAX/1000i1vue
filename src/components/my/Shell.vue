@@ -148,14 +148,14 @@
                             }">
                                 <a @click="toggleSwitchUserMenu()">
                                     <!-- The user image in the navbar-->
-                                    <img :src="this.$store.getters.getUserPhoto" class="user-image" alt="User Image">
+                                    <img :src="this.$store.getters.getUserPhotoFromStorage" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">{{ this.$store.getters.getUserLastnameName }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img :src="this.$store.getters.getUserPhoto" class="img-circle" alt="User Image">
+                                        <img :src="this.$store.getters.getUserPhotoFromStorage" class="img-circle" alt="User Image">
                                         <p>{{ this.$store.getters.getUserLastnameName }}
                                             <small>{{ this.$store.getters.getUserRole }}</small>
                                         </p>

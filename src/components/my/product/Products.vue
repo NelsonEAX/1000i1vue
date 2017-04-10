@@ -3,7 +3,7 @@
         <category
                 v-for="category in categories"
                 :category="category"
-                :products="products | thisCategoryProduct( category.id)"
+                :products="products | thisCategoryProduct( category.id )"
         ></category>
     </div>
 </template>
@@ -26,14 +26,14 @@
         },
         filters: {
             thisCategoryProduct: function (products, categoryID) {
-                console.log('categoryID', categoryID);
-               // console.log(products.filter( product => product.category == categoryID ))
+               // console.log('categoryID', categoryID);//###TODO: delete
+               // console.log(products.filter( product => product.category == categoryID ))//###TODO: delete
                 return products.filter( product => product.category == categoryID );
             }
         },
         /*hook*/
         created (){
-            console.log('Получаю категории');//###TODO: delete
+            //console.log('Получаю категории');//###TODO: delete
             //После авторизации полуаем данные юзера с сервера
             this.$http.get('api/categories', this.$store.getters.getHeaders).then(response => {
                 console.log('категории',response.body);//###TODO: delete
