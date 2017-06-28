@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-3">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
         <div class="thumbnail">
             <img :src="this.$store.getters.getMainImgFromStorage( this.product, 330, 330 )"
                  alt=""

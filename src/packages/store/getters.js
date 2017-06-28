@@ -19,8 +19,8 @@ export default {
             if (width || height) {
                 thumbnail = 'th' + (width ? width : '0') + 'x' + (height ? height : '0');
             }
-            console.log(state.app.server.root + state.app.storage.image + obj.imgs[0].name + thumbnail + '.' + obj.imgs[0].ext);//###TODO: delete
-            return state.app.server.root + state.app.storage.image + obj.imgs[0].name + thumbnail + '.' + obj.imgs[0].ext;
+            console.log(state.app.server.root + state.app.storage.image + obj.imgs[0].dir + obj.imgs[0].name + thumbnail + '.' + obj.imgs[0].ext);//###TODO: delete
+            return state.app.server.root + state.app.storage.image + obj.imgs[0].dir + obj.imgs[0].name + thumbnail + '.' + obj.imgs[0].ext;
         }
         else 
             return state.app.storage.default;
@@ -34,8 +34,8 @@ export default {
             if (width || height) {
                 thumbnail = 'th' + (width ? width : '0') + 'x' + (height ? height : '0');
             }
-            console.log(state.app.server.root + state.app.storage.image + img.name + thumbnail + '.' + img.ext);//###TODO: delete
-            uri.push(state.app.server.root + state.app.storage.image + img.name + thumbnail + '.' + img.ext);
+            console.log(state.app.server.root + state.app.storage.image + img.dir + img.name + thumbnail + '.' + img.ext);//###TODO: delete
+            uri.push(state.app.server.root + state.app.storage.image + img.dir + img.name + thumbnail + '.' + img.ext);
         });
         if (uri) 
             return uri;

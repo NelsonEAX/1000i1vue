@@ -6,7 +6,7 @@ export default {
     state: {
         client_id: 2,
         grant_type: 'password',
-        client_secret: 'zUxRqZVzGz4erCWkj6PObTTw5ugmHMhRdtvKWSiC',//null,
+        client_secret: '4u20oeS2urRAsYcCdDRKsLff59ExZjxB9ZYxVILK',//null,
         token: null,
         expiration: null,
     },
@@ -84,6 +84,7 @@ export default {
                 console.log('Токен устарел, удаляем');//###TODO: delete
                 context.commit('unsetLogin');
                 context.commit('unsetUserInfo');
+                return;
             }
 
             context.commit('setLogin', {
