@@ -70,12 +70,12 @@ export default {
             }
             return "Неизвестный"
         },
-        getUserPhoto(state){
+        /*getUserPhoto(state){
             if(state.photo){
-                return '/static/img/users/' + state.photo;
+                return state.app.storage.user + state.photo;
             }
-            return '/static/img/users/noname.jpg';
-        },
+            return state.app.storage.defaultUser;
+        },*/
 
 
 

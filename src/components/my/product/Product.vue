@@ -1,7 +1,9 @@
 <template>
-    <div class="col-md-4">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
         <div class="thumbnail">
-            <img src="https://yt3.ggpht.com/-cyWthQnpiro/AAAAAAAAAAI/AAAAAAAAAAA/MYbbWALSQa0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" alt="">
+            <img :src="this.$store.getters.getMainImgFromStorage( this.product, 330, 330 )"
+                 alt=""
+                 class="img-responsive">
             <div class="caption">
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.price }}</p>
@@ -17,7 +19,14 @@
 
 <script>
     export default {
-        props: ['product']
+        computed: {},
+        methods: {
+            getImgSrcFromJsonString(string){
+                console.log( JSON.parse(string));
+                return JSON.parse(string)
+            },
+        },
+        props: ['product'],
     }
 </script>
 
