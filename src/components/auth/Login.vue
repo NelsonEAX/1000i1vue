@@ -9,7 +9,8 @@
             <!-- /.login-logo -->
             <div class="login-box-body">
                 <p class="login-box-msg">Войдите для продолжения работы</p>
-                <div :class="this.$store.getters.getClassValid( fields.passed('email') && !error, errors.has('email') || error )">
+                <div :class="this.$store.getters.getClassValid( fields.email && fields.email.valid && !error,
+                                                                errors.has('email') || error )">
                     <input  v-model="email"
                             v-validate="this.$store.getters.getRuleEmail"
                             @keydown="keydown"
@@ -20,7 +21,8 @@
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
-                <div :class="this.$store.getters.getClassValid( fields.passed('password') && !error, errors.has('password') || error )">
+                <div :class="this.$store.getters.getClassValid( fields.password && fields.password.valid && !error,
+                                                                errors.has('password') || error )">
                     <input  v-model="password"
                             v-validate="this.$store.getters.getRulePassword"
                             @keydown="keydown"
@@ -42,7 +44,7 @@
                         <button @click="login"
                                 type="submit"
                                 class="btn btn-primary btn-block btn-flat"
-                                :disabled="fields.failed() || fields.clean('email') || fields.clean('password') || loading || error">
+                                :disabled="!valid">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
                             <span v-else>Войти</span>
                         </button>
@@ -79,16 +81,20 @@
         components: {
             alert,
         },
+        computed: {
+            valid() {
+                return this.fields.email && this.fields.email.valid &&
+                       this.fields.password && this.fields.password.valid &&
+                       !this.loading && !this.error;
+            }
+        },
         methods: {
             keydown($event){
                 this.modalLoginFalse = false;
                 ($event.keyCode == 13) ? this.enter() : this.error = false ;
             },
             enter(){
-                if( !this.fields.failed() &&
-                    !this.fields.clean('email') &&
-                    !this.fields.clean('password') &&
-                    !this.loading && !this.error){
+                if( this.valid ){
                     return this.login();
                 }
             },
@@ -136,10 +142,10 @@
                     this.loading = false;
                 })
             }
-        },
-        created(){
+        }/*,
+        created(){ TODO:Удалить
             console.log(this);
-        }
+        }*/
     }
 </script>
 

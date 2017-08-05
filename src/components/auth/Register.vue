@@ -9,7 +9,8 @@
             <!-- /.register-logo -->
             <div class="register-box-body">
                 <p class="register-box-msg">Регистрация нового пользователя</p>
-                <div :class="this.$store.getters.getClassValid( fields.passed('email') && result!==false, errors.has('email') || result===false )">
+                <div :class="this.$store.getters.getClassValid( fields.email && fields.email.valid && result!==false,
+                                                                errors.has('email') || result===false )">
                     <input  v-model="email"
                             v-validate="this.$store.getters.getRuleEmail"
                             @keydown="keydown"
@@ -20,7 +21,8 @@
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     <span class="help-block text-center" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
-                <div :class="this.$store.getters.getClassValid( fields.passed('password'), errors.has('password') )">
+                <div :class="this.$store.getters.getClassValid( fields.password && fields.password.valid,
+                                                                errors.has('password') )">
                     <input  v-model="password"
                             v-validate="this.$store.getters.getRulePassword"
                             @keydown.enter="enter"
@@ -30,7 +32,8 @@
                             :placeholder="this.$store.getters.getPlaceholderPassword">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-                <div :class="this.$store.getters.getClassValid( fields.passed('confirm'), errors.has('confirm') )">
+                <div :class="this.$store.getters.getClassValid( fields.confirm && fields.confirm.valid,
+                                                                errors.has('confirm') )">
                     <input  v-model="confirm"
                             v-validate="this.$store.getters.getRulePasswordConfirm"
                             @keydown.enter="enter"
@@ -55,11 +58,7 @@
                         <button @click="register"
                                 type="submit"
                                 class="btn btn-primary btn-block btn-flat"
-                                :disabled="fields.failed() ||
-                                    fields.clean('email') ||
-                                    fields.clean('password') ||
-                                    fields.clean('confirm') ||
-                                    loading || result===false">
+                                :disabled="!valid">
                             <i v-if="loading" class="fa fa-refresh fa-spin fa-fw"></i>
                             <span v-else>Регистрация</span>
                         </button>
@@ -71,7 +70,7 @@
         </div>
 
         <!-- { alert } -->
-        <alert :show.sync="modalRegisterFalse" placement="top" duration="3000" type="warning" width="400px" dismissable>
+        <alert :show.sync="modalRegisterFalse" placement="top" type="warning" width="400px" dismissable><!--duration="3000"-->
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <strong>Внимание!</strong>
             <p class="text-center">{{ result_message }}</p>
@@ -118,6 +117,14 @@
             modal,
             alert,
         },
+        computed: {
+            valid() {
+                return  this.fields.email && this.fields.email.valid &&
+                        this.fields.password && this.fields.password.valid &&
+                        this.fields.confirm && this.fields.confirm.valid &&
+                        !this.loading && this.result!==false;
+            }
+        },
         methods: {
             makeemail()
             {
@@ -133,11 +140,7 @@
                 ($event.keyCode == 13) ? this.enter() : this.result = null ;
             },
             enter(){
-                if( !this.fields.failed() &&
-                    !this.fields.clean('email') &&
-                    !this.fields.clean('password') &&
-                    !this.fields.clean('confirm') &&
-                    !this.loading && this.result!==false){
+                if( this.valid ){
                     return this.register();
                 }
             },
