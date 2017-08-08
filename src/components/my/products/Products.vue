@@ -27,7 +27,7 @@
         filters: {
             thisCategoryProduct: function (products, categoryID) {
                // console.log('categoryID', categoryID);//###TODO: delete
-               // console.log(products.filter( product => product.category == categoryID ))//###TODO: delete
+               // console.log(products.filter( products => products.category == categoryID ))//###TODO: delete
                 return products.filter( product => product.category_id == categoryID );
             }
         },

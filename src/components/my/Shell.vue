@@ -229,6 +229,7 @@
 
                         <li class="header">То</li>
                         <router-link tag="li" class="pageLink" to="/my/product"><a><i class="fa fa-th"></i><span class="page">Продукция</span></a></router-link>
+                        <router-link tag="li" class="pageLink" to="/my/orders"><a><i class="fa fa-th"></i><span class="page">Заказ</span></a></router-link>
                         <router-link tag="li" class="pageLink" to="/my/tasks"><a><i class="fa fa-tasks"></i><span class="page">Задачи</span></a></router-link>
                         <router-link tag="li" class="pageLink" to="/my/setting"><a><i class="fa fa-cog"></i><span class="page">Настройки</span></a></router-link>
 
