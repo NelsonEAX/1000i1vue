@@ -55,12 +55,12 @@ export const router = new VueRouter({
         {path: "/main",                     component: Index},
 
         /** AUTH **/
-        {path: "/login",                    component: Login,   meta: getPageRule([0,-1,-1,-1])},
-        {path: "/register",                 component: Registr, meta: getPageRule([0,-1,-1,-1])},
+        {path: "/login",                    component: Login,   meta: { rule: { forAuth: false } } },/*getPageRule([0,-1,-1,-1])} },*/
+        {path: "/register",                 component: Registr, meta: { rule: { forAuth: false } } },/*getPageRule([0,-1,-1,-1])} },*/
         {path: '/confirm/:token',           component: Confirm},
 
         /** DASHBOARD **/
-        {path: '/my',                       component: Shell,    meta: getPageRule([1,-1,-1,-1]),
+        {path: '/my',                       component: Shell,    meta: { rule: { forAuth: true } }, /*getPageRule([1,-1,-1,-1]) },*/
             children: [
                 {
                     path: 'dashboard',
@@ -68,7 +68,16 @@ export const router = new VueRouter({
                     name: 'Главная',
                     alias: '',
                     meta: {
-                        rule: getPageRule([1,-1,-1,-1]),
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                            forManager: true,
+                            forDealer: true,
+                            forAgent: true,
+                            forFranchise: true,
+                            forRelated: true,
+                        },//getPageRule([1,-1,-1,-1]),
                         icon: 'fa fa-tachometer',
                         description: 'Описание страницы главная'
                     }
@@ -78,7 +87,16 @@ export const router = new VueRouter({
                     component: Profile,
                     name: 'Профиль',
                     meta: {
-                        rule: getPageRule([1,-1,-1,-1]),
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                            forManager: true,
+                            forDealer: true,
+                            forAgent: true,
+                            forFranchise: true,
+                            forRelated: true,
+                        },
                         icon: 'fa fa-user',
                         description: 'Описание страницы профиль'
                     }
@@ -88,7 +106,16 @@ export const router = new VueRouter({
                     component: Products,
                     name: 'Продукция',
                     meta: {
-                        rule: getPageRule([1,-1,-1,-1]),
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                            forManager: true,
+                            forDealer: true,
+                            forAgent: true,
+                            forFranchise: true,
+                            forRelated: true,
+                        },
                         icon: 'fa fa-th',
                         description: 'Товары для заказа'
                     }
@@ -98,7 +125,13 @@ export const router = new VueRouter({
                     component: Orders,
                     name: 'Заказы',
                     meta: {
-                        rule: getPageRule([1,-1,-1,-1]),
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                            forManager: true,
+                            forDealer: true,
+                        },
                         icon: 'fa fa-th',
                         description: 'Товары для заказа'
                     }
@@ -112,7 +145,20 @@ export const router = new VueRouter({
                    path: 'feed',
                    component: Feed,
                    name: 'Feed',
-                   meta: getPageRule([1,1,1,1])
+                   meta: {
+                       rule: {
+                           forAuth: true,
+                           forConfirmed: true,
+                           forAdmin: true,
+                           forManager: true,
+                           forDealer: true,
+                           forAgent: true,
+                           forFranchise: true,
+                           forRelated: true,
+                       },
+                       icon: 'fa fa-th',
+                       description: 'Товары для feed'
+                   }
                 },/*,
                 {path: '', component: Dashboard},
                 {path: '', component: Dashboard}*/

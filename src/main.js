@@ -17,12 +17,13 @@ Vue.http.headers.common['Authorization'] = store.getters.getHeaderAuthorization;
 Vue.http.headers.common['Content-Type'] = store.getters.getHeaderContentType;
 
 router.beforeEach((to, from, next) => {
-    console.log(to.fullPath); //###TODO: delete
-    console.log(to); //###TODO: delete
+    console.log('to.fullPath', to.fullPath); //###TODO: delete
+    console.log('to', to); //###TODO: delete
     //console.log(from); //###TODO: delete
     //console.log(next); //###TODO: delete
 
-    if (to.matched.some(record => record.meta.forAuth === true)) {
+    if (to.matched.some(record => {console.log(record); return record.meta.rule.forAuth === true;})) {
+        // console.log('record', record);
         // этот путь требует авторизации, проверяем залогинен ли
         // пользователь, и если нет, перенаправляем на страницу логина
         if (!store.getters.isAuth) {
@@ -33,7 +34,7 @@ router.beforeEach((to, from, next) => {
         } else {
             next()
         }
-    } else if (to.matched.some(record => record.meta.forAuth === false )) {
+    } else if (to.matched.some(record => record.meta.rule.forAuth === false)) {
         // эта страница недоступна авторизованным пользователям
         // перенаправляем на страницу профиля
         if (store.getters.isAuth) {

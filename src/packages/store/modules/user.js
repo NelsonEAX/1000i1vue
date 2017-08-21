@@ -19,27 +19,33 @@ export default {
         }
     },
     getters: {
-        
-        
+
         /** User Role */
         isEAX(state){
-            if(state.rule.eax)
-                return true;
-            else
-                return false;
+            return state.rule.eax ? true : false;
         },
         isAdmin(state){
-            if(state.rule.admin)
-                return true;
-            else
-                return false;
+            return state.rule.admin ? true : false;
         },
         isConfirmed(state){
-            if(state.rule.confirmed)
-                return true;
-            else
-                return false;
+            return state.rule.confirmed ? true : false;
         },
+        isManager(state){
+            return state.rule.manager ? true : false;
+        },
+        isDealer(state){
+            return state.rule.dealer ? true : false;
+        },
+        isAgent(state){
+            return state.rule.agent ? true : false;
+        },
+        isFranchise(state){
+            return state.rule.franchise ? true : false;
+        },
+        isRelated(state){
+            return state.rule.related ? true : false;
+        },
+
        /* isAuth(state){
             if(state.token)
                 return true;
@@ -99,10 +105,15 @@ export default {
             state.email             = user.email            ? user.email : null;
             state.photo             = user.photo            ? user.photo : null;
             state.birthday          = user.birthday         ? user.birthday : null;
-            
+
             state.rule.eax          = user.rule.eax         ? user.rule.eax : null;
             state.rule.admin        = user.rule.admin       ? user.rule.admin : null;
             state.rule.confirmed    = user.rule.confirmed   ? user.rule.confirmed : null;
+            state.rule.manager      = user.rule.manager     ? user.rule.manager : null;
+            state.rule.dealer       = user.rule.dealer      ? user.rule.dealer : null;
+            state.rule.agent        = user.rule.agent       ? user.rule.agent : null;
+            state.rule.franchise    = user.rule.franchise   ? user.rule.franchise : null;
+            state.rule.related      = user.rule.related     ? user.rule.related : null;
         },
         unsetUserInfo(state){
             state.login             = null;
@@ -113,10 +124,15 @@ export default {
             state.email             = null;
             state.photo             = null;
             state.birthday          = null;
-            
+
             state.rule.eax          = null;
             state.rule.admin        = null;
             state.rule.confirmed    = null;
+            state.rule.manager      = null;
+            state.rule.dealer       = null;
+            state.rule.agent        = null;
+            state.rule.franchise    = null;
+            state.rule.related      = null;
         },
     },
     actions: {

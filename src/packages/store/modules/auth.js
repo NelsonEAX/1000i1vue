@@ -6,7 +6,7 @@ export default {
     state: {
         client_id: 2,
         grant_type: 'password',
-        client_secret: '4u20oeS2urRAsYcCdDRKsLff59ExZjxB9ZYxVILK',//null,
+        client_secret: '8DpcXPeMLNp7PIc5fmnPDZj3MSoBDmOuGaJpo4EV',//null,
         token: null,
         expiration: null,
     },
