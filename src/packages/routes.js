@@ -20,6 +20,12 @@ import Orders from './../components/my/orders/Orders.vue'
 import Authorized from './../components/auth/Authorized.vue'
 
 
+/** ACCESS **/
+import AcsAdmin     from './../components/my/test_access/Admin.vue'
+import AcsManager   from './../components/my/test_access/Manager.vue'
+import AcsDealer    from './../components/my/test_access/Dealer.vue'
+import AcsConfirmed from './../components/my/test_access/Confirmed.vue'
+
 /** 404 **/
 import Page404 from './../components/Page404.vue'
 
@@ -51,8 +57,8 @@ export const router = new VueRouter({
     mode: 'history',
     routes: [
         /** ALL **/
-        {path: "/index.html",  alias:"/",   component: Index},
-        {path: "/main",                     component: Index},
+        {path: "/index.html",  alias:"/",   component: Index,   meta: { rule: { forAuth: false } } },
+        {path: "/main",                     component: Index,   meta: { rule: { forAuth: false } } },
 
         /** AUTH **/
         {path: "/login",                    component: Login,   meta: { rule: { forAuth: false } } },/*getPageRule([0,-1,-1,-1])} },*/
@@ -139,8 +145,68 @@ export const router = new VueRouter({
 
 
 
-
-
+                /**
+                 * Тестирование уровней доступа
+                 * */
+                {
+                    path: 'access/admin',
+                    component: AcsAdmin,
+                    name: 'AcsAdmin',
+                    meta: {
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                        },
+                        icon: 'fa fa-th',
+                        description: 'Эта страница видна Админу '
+                    }
+                },
+                {
+                    path: 'access/manager',
+                    component: AcsManager,
+                    name: 'AcsManager',
+                    meta: {
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                            forManager: true,
+                        },
+                        icon: 'fa fa-th',
+                        description: 'Эта страница видна Админу, подтвержденному Менеджеру'
+                    }
+                },
+                {
+                    path: 'access/dealer',
+                    component: AcsDealer,
+                    name: 'AcsDealer',
+                    meta: {
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            forAdmin: true,
+                            forDealer: true,
+                        },
+                        icon: 'fa fa-th',
+                        description: 'Эта страница видна Админу, подтвержденному Дилеру'
+                    }
+                },
+                {
+                    path: 'access/confirmed',
+                    component: AcsConfirmed,
+                    name: 'AcsConfirmed',
+                    meta: {
+                        rule: {
+                            forAuth: true,
+                            forConfirmed: true,
+                            /*forAdmin: true,
+                            forDealer: true,*/
+                        },
+                        icon: 'fa fa-th',
+                        description: 'Эта страница видна Админу, подтвержденному Дилеру'
+                    }
+                },
                 {
                    path: 'feed',
                    component: Feed,
