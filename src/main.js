@@ -32,6 +32,34 @@ router.beforeEach((to, from, next) => {
                 query: { redirect: to.fullPath }
             })
         } else {
+            // Здесь происходит проверка доступности страниц по правам пользователя
+            // /** EAX */
+            // if (store.getters.isEAX) {
+            //     console.log('ROLE : EAX');
+            //     next()
+            // }
+            // /** Admin */
+            // if (to.matched.some(record => record.meta.forAdmin === true)) {
+            //     if (store.getters.isAdmin) {
+            //         console.log('ROLE : Admin');
+            //         next()
+            //     }
+            // }
+            // /** Confirmed */
+            // if (to.matched.some(record => record.meta.forConfirmed === true)) {
+            //     if (store.getters.isConfirmed) {
+            //         console.log('ROLE : forConfirmed');
+            //         next()
+            //     }
+            // }
+            //
+            // /** Default - back to /dash*/
+            // console.log('ROLE : Default');
+            // next(false);
+            // next({
+            //     path: '/dash',
+            //     query: { redirect: to.fullPath }
+            // })
             next()
         }
     } else if (to.matched.some(record => record.meta.rule.forAuth === false)) {

@@ -16,6 +16,11 @@ export default {
             eax: null,
             admin: null,
             confirmed: null,
+            manager: null,
+            dealer: null,
+            franchise: null,
+            agent: null,
+            related: null
         }
     },
     getters: {
